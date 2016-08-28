@@ -58,6 +58,15 @@ import { Strain, Extract } from 'cannabis-reports';
 * [Edible.producer()](#edible-producer)
 * [Edible.strain()](#edible-strain)
 
+## Products
+* [Product.all()](#product-all)
+* [Product.type()](#product-type)
+* [Product.user()](#product-user)
+* [Product.reviews()](#product-reviews)
+* [Product.effectsFlavors()](#product-effectsFlavors)
+* [Product.producer()](#product-producer)
+* [Product.strain()](#product-strain)
+
 - - -
 <h3 id='strain-all'>Strain.all(options)</h3>
 returns an Array of strain objects.
@@ -601,6 +610,140 @@ returns an Array of information about the availability of a edible using latitud
 
 ```javascript
 Edible
+  .availability('3CV7E33XLHTJT2XZ4GMD00000', 37.7749295, -122.4194155, options)
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='product-all'>Product.all(options)</h3>
+returns an Array of product objects.
+
+##### `options` (optional) - [Object]
+* `sort` - [String] Possible values:
+	* `createdAt` - Oldest records
+	* `-createdAt` - Newest records
+	* `updatedAt` - Oldest updated records
+	* `-updatedAt` - Newest updated records
+* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want. Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
+
+```javascript
+Product
+  .all(options)
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='product-type'>Product.type(productType, options)</h3>
+returns an Array of products for a given type.
+
+##### `productType` (required) - [String] (case-insensitive) Possible values:
+* `bath`
+* `topical`
+* `skin care`
+* `pre-roll`
+* `lip balm`
+* `massage oil`
+* `personal lubricant`
+##### `options` (optional) - [Object]
+* `sort` - [String] Possible values:
+	* `createdAt` - Oldest records
+	* `-createdAt` - Newest records
+	* `updatedAt` - Oldest updated records
+	* `-updatedAt` - Newest updated records
+* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want. Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
+
+```javascript
+Product
+  .type(productType, options)
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='product-product'>Product.product(ucpc)</h3>
+returns a single product object with the specified UCPC.
+
+##### `ucpc` (required) - [String]
+
+```javascript
+Product
+  .product('3CV7E33XLHTJT2XZ4GMD00000')
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='product-user'>Product.user(ucpc)</h3>
+returns a single user object of the user who added the product to the database.
+
+##### `ucpc` (required) - [String]
+
+```javascript
+Product
+  .user('3CV7E33XLHTJT2XZ4GMD00000')
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='product-reviews'>Product.reviews(ucpc, options)</h3>
+returns an array of reviews for a cannabis product.
+
+##### `ucpc` (required) - [String]
+##### `options` (optional) - [Object]
+* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want. Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
+
+```javascript
+Product
+  .reviews('3CV7E33XLHTJT2XZ4GMD00000', options)
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='product-effectsFlavors'>Product.effectsFlavors(ucpc)</h3>
+returns a object containing the average effects and flavors from reviews for this product.
+
+##### `ucpc` (required) - [String]
+
+```javascript
+Product
+  .effectsFlavors('3CV7E33XLHTJT2XZ4GMD00000')
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='product-producer'>Product.producer(ucpc)</h3>
+returns a object for the producer of a product.
+
+##### `ucpc` (required) - [String]
+
+```javascript
+Product
+  .producer('3CV7E33XLHTJT2XZ4GMD00000')
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+<h3 id='product-strain'>Product.strain(ucpc)</h3>
+returns a object for the strain of a product.
+
+##### `ucpc` (required) - [String]
+
+```javascript
+Product
+  .strain('3CV7E33XLHTJT2XZ4GMD00000')
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='product-availability'>Product.availability(ucpc, lat, lng, options)</h3>
+returns an Array of information about the availability of a product using latitude and longitude.
+
+##### `ucpc` (required) - [String]
+##### `lat` (required) - [String] or [Number]
+##### `lng` (required) - [String] or [Number]
+##### `options` (optional) - [Object]
+* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want. Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
+* `radius` - [Number] Radius to search for in miles, max 25.
+
+```javascript
+Product
   .availability('3CV7E33XLHTJT2XZ4GMD00000', 37.7749295, -122.4194155, options)
   .then(data => console.log(data))
   .catch(err => console.log(err))
