@@ -12,10 +12,14 @@ npm install --save cannabis-reports
 ### Usage
 
 ```javascript
+import { Strain, Flower } from 'cannabis-reports';
+```
+Only import the modules your need. For example, if you only need the `Strain` module:
+```javascript
 import { Strain } from 'cannabis-reports';
 ```
 
-### Strains
+## Strains
 * [Strain.all()](#strain-all)
 * [Strain.search()](#strain-search)
 * [Strain.strain()](#strain-strain)
@@ -27,12 +31,21 @@ import { Strain } from 'cannabis-reports';
 * [Strain.children()](#strain-children)
 * [Strain.availability()](#strain-availability)
 
+## Flowers
+* [Flower.all()](#flower-all)
+
 - - -
 <h3 id='strain-all'>Strain.all(options)</h3>
 returns an Array of strain objects.
 
 ##### `options` (optional) - [Object]
-* `sort` - [String] see [sort types](https://developers.cannabisreports.com/docs/strains#sort)
+* `sort` - [String]
+	* `createdAt` - Oldest records
+	* `-createdAt` - Newest records
+	* `updatedAt` - Oldest updated records
+	* `-updatedAt` - Newest updated records
+	* `name` - Alphabetically stating with numeric strains. 0-9, A-Z.
+	* `-name` - Alphabetically starting with Z and working back through numeric strains. Z-A, 9-0.
 * `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want. Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
 
 ```javascript
@@ -131,7 +144,7 @@ Strain
 ```
 
 <h3 id='strain-children'>Strain.children(ucpc, options)</h3>
-returns an array of the child strains that this one has been bred into.
+returns an array of the child strains that this strain has been bred into.
 
 ##### `ucpc` (required) - [String]
 ##### `options` (optional) - [Object]
@@ -145,7 +158,7 @@ Strain
 ```
 
 <h3 id='strain-availability'>Strain.availability(ucpc, lat, lng, options)</h3>
-returns an array of the child strains that this one has been bred into.
+returns an Array of information about the availability of a strain using latitude and longitude.
 
 ##### `ucpc` (required) - [String]
 ##### `lat` (required) - [String] or [Number]
@@ -157,6 +170,24 @@ returns an array of the child strains that this one has been bred into.
 ```javascript
 Strain
   .availability('VUJCJ4TYMG000000000000000', 37.7749295, -122.4194155, options)
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='flower-all'>Flower.all(options)</h3>
+returns an Array of flower objects.
+
+##### `options` (optional) - [Object]
+* `sort` - [String] Possible Values:
+	* `createdAt` - Oldest records
+	* `-createdAt` - Newest records
+	* `updatedAt` - Oldest updated records
+	* `-updatedAt` - Newest updated records
+* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want. Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
+
+```javascript
+Flower
+  .all(options)
   .then(data => console.log(data))
   .catch(err => console.log(err))
 ```
