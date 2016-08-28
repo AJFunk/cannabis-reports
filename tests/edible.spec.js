@@ -34,25 +34,25 @@ describe('Edible.type()', () => {
   );
 });
 
-describe('Edible.flower()', () => {
+describe('Edible.edible()', () => {
   it('returns object', () =>
-    Edible.flower('4KXM32V9YFC3G2EUNWP400000')
+    Edible.edible('4KXM32V9YFC3G2EUNWP400000')
     .then((data) => expect(typeof(data)).to.equal('object'))
   );
   it('returns error message', () =>
-    Edible.flower('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
+    Edible.edible('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Edible.flower('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
+    Edible.edible('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Edible.flower('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
+    Edible.edible('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Edible.flower('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
+    Edible.edible('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Edible.flower('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
+    Edible.edible('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
 });
 

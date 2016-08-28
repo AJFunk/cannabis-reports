@@ -18,7 +18,7 @@ describe('Extract.all()', () => {
 
 describe('Extract.type()', () => {
   it('returns array', () =>
-    Extract.type('flowers').then((data) => expect(data).to.be.instanceof(Array))
+    Extract.type('extracts').then((data) => expect(data).to.be.instanceof(Array))
   );
   it('returns array sorted by createdAt', () =>
     Extract.type('sEeds', { sort: 'createdAt' })
@@ -36,25 +36,25 @@ describe('Extract.type()', () => {
   );
 });
 
-describe('Extract.flower()', () => {
+describe('Extract.extract()', () => {
   it('returns object', () =>
-    Extract.flower('3CV7E33XLHTJT2XZ4GMD00000')
+    Extract.extract('3CV7E33XLHTJT2XZ4GMD00000')
     .then((data) => expect(typeof(data)).to.equal('object'))
   );
   it('returns error message', () =>
-    Extract.flower('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
+    Extract.extract('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Extract.flower('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
+    Extract.extract('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Extract.flower('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
+    Extract.extract('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Extract.flower('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
+    Extract.extract('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Extract.flower('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
+    Extract.extract('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
 });
 

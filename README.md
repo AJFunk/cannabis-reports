@@ -34,38 +34,55 @@ import { Strain, Extract } from 'cannabis-reports';
 ## Flowers
 * [Flower.all()](#flower-all)
 * [Flower.type()](#flower-type)
+* [Flower.flower()](#flower-flower)
 * [Flower.user()](#flower-user)
 * [Flower.reviews()](#flower-reviews)
 * [Flower.effectsFlavors()](#flower-effectsFlavors)
 * [Flower.producer()](#flower-producer)
 * [Flower.strain()](#flower-strain)
+* [Flower.availability()](#flower-availability)
 
 ## Extracts
 * [Extract.all()](#extract-all)
 * [Extract.type()](#extract-type)
+* [Extract.extract()](#extract-extract)
 * [Extract.user()](#extract-user)
 * [Extract.reviews()](#extract-reviews)
 * [Extract.effectsFlavors()](#extract-effectsFlavors)
 * [Extract.producer()](#extract-producer)
 * [Extract.strain()](#extract-strain)
+* [Extract.availability()](#extract-availability)
 
 ## Edibles
 * [Edible.all()](#edible-all)
 * [Edible.type()](#edible-type)
+* [Edible.edible()](#edible-edible)
 * [Edible.user()](#edible-user)
 * [Edible.reviews()](#edible-reviews)
 * [Edible.effectsFlavors()](#edible-effectsFlavors)
 * [Edible.producer()](#edible-producer)
 * [Edible.strain()](#edible-strain)
+* [Edible.availability()](#edible-availability)
 
 ## Products
 * [Product.all()](#product-all)
 * [Product.type()](#product-type)
+* [Product.product()](#product-product)
 * [Product.user()](#product-user)
 * [Product.reviews()](#product-reviews)
 * [Product.effectsFlavors()](#product-effectsFlavors)
 * [Product.producer()](#product-producer)
 * [Product.strain()](#product-strain)
+* [Product.availability()](#product-availability)
+
+## Producers
+* [Producer.all()](#producer-all)
+* [Producer.producer()](#producer-producer)
+* [Producer.user()](#producer-user)
+* [Producer.extracts()](#producer-extracts)
+* [Producer.edibles()](#producer-edibles)
+* [Producer.products()](#producer-products)
+* [Producer.availability()](#producer-availability)
 
 - - -
 <h3 id='strain-all'>Strain.all(options)</h3>
@@ -745,6 +762,112 @@ returns an Array of information about the availability of a product using latitu
 ```javascript
 Product
   .availability('3CV7E33XLHTJT2XZ4GMD00000', 37.7749295, -122.4194155, options)
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='producer-all'>Producer.all(options)</h3>
+returns an Array of producer objects.
+
+##### `options` (optional) - [Object]
+* `sort` - [String] Possible values:
+	* `createdAt` - Oldest records
+	* `-createdAt` - Newest records
+	* `updatedAt` - Oldest updated records
+	* `-updatedAt` - Newest updated records
+	* `name` - Alphabetically stating with numeric producers. 0-9, A-Z.
+	* `-name` - Alphabetically starting with Z and working back through numeric producers. Z-A, 9-0.
+* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want. Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
+
+```javascript
+Producer
+  .all(options)
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='producer-producer'>Producer.producer(ucpc)</h3>
+returns a single producer object with the specified UCPC.
+
+##### `ucpc` (required) - [String]
+
+```javascript
+Producer
+  .producer('0000000000L6M7E0000000000')
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='producer-extracts'>Producer.extracts(ucpc, options)</h3>
+returns an array of extracts for a cannabis producer.
+
+##### `ucpc` (required) - [String]
+##### `options` (optional) - [Object]
+* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want. Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
+* `sort` - [String] Possible values:
+	* `createdAt` - Oldest records
+	* `-createdAt` - Newest records
+	* `updatedAt` - Oldest updated records
+	* `-updatedAt` - Newest updated records
+
+```javascript
+Producer
+  .extracts('0000000000L6M7E0000000000', options)
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='producer-edibles'>Producer.edibles(ucpc, options)</h3>
+returns an array of edibles for a cannabis producer.
+
+##### `ucpc` (required) - [String]
+##### `options` (optional) - [Object]
+* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want. Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
+* `sort` - [String] Possible values:
+	* `createdAt` - Oldest records
+	* `-createdAt` - Newest records
+	* `updatedAt` - Oldest updated records
+	* `-updatedAt` - Newest updated records
+
+```javascript
+Producer
+  .edibles('0000000000L6M7E0000000000', options)
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='producer-products'>Producer.products(ucpc, options)</h3>
+returns an array of products for a cannabis producer.
+
+##### `ucpc` (required) - [String]
+##### `options` (optional) - [Object]
+* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want. Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
+* `sort` - [String] Possible values:
+	* `createdAt` - Oldest records
+	* `-createdAt` - Newest records
+	* `updatedAt` - Oldest updated records
+	* `-updatedAt` - Newest updated records
+
+```javascript
+Producer
+  .products('0000000000L6M7E0000000000', options)
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='producer-availability'>Producer.availability(ucpc, lat, lng, options)</h3>
+returns an Array of information about the availability of a producer using latitude and longitude.
+
+##### `ucpc` (required) - [String]
+##### `lat` (required) - [String] or [Number]
+##### `lng` (required) - [String] or [Number]
+##### `options` (optional) - [Object]
+* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want. Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
+* `radius` - [Number] Radius to search for in miles, max 25.
+
+```javascript
+Producer
+  .availability('0000000000L6M7E0000000000', 37.7749295, -122.4194155, options)
   .then(data => console.log(data))
   .catch(err => console.log(err))
 ```
