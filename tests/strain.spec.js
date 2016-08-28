@@ -54,3 +54,25 @@ describe('Strain.strain()', () => {
     Strain.strain('VUJCJ4TYMG00!000000&0000').catch((err) => expect(err).to.be.an('error'))
   );
 });
+
+describe('Strain.user()', () => {
+  it('returns object', () =>
+    Strain.strain('VUJCJ4TYMG000000000000000')
+    .then((data) => expect(typeof(data)).to.equal('object'))
+  );
+  it('returns error message', () =>
+    Strain.strain('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Strain.strain('VUJCJ4TYMG00&00000000000').catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Strain.strain('VUJCJ4TYMG00 00000000000').catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Strain.strain('VUJCJ4TYMG00_000000&0000').catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Strain.strain('VUJCJ4TYMG00!000000&0000').catch((err) => expect(err).to.be.an('error'))
+  );
+});

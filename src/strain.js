@@ -2,8 +2,8 @@ import request from 'request';
 import Q from 'q';
 
 export default function strain(apiKey: string, baseUrl: string): object {
-  function sendRequest(ucpc: string, options: object = {}, cb: object): undefined {
-    let url = `${baseUrl}strains${(ucpc ? `/${ucpc}?` : '?')}`;
+  function sendRequest(endpoint: string, options: object = {}, cb: object): undefined {
+    let url = `${baseUrl}strains${(endpoint ? `/${endpoint}?` : '?')}`;
     if (options) {
       if (options.sort) url = `${url}sort=${options.sort}&`;
       if (options.page) url = `${url}page=${options.page}`;
@@ -38,9 +38,7 @@ export default function strain(apiKey: string, baseUrl: string): object {
 
     search(query: string, options: object): undefined {
       const deferred = Q.defer();
-      if (!query || typeof(query) !== 'string') {
-        deferred.reject(new Error('A string query is required.'));
-      }
+      if (!query || typeof(query) !== 'string') deferred.reject(new Error('A string query is required.'));
       sendRequest(`search/${query}`, options, (err: string, data: object): undefined => {
         if (err) return deferred.reject(err);
         return deferred.resolve(data);
@@ -50,10 +48,18 @@ export default function strain(apiKey: string, baseUrl: string): object {
 
     strain(ucpc: string): undefined {
       const deferred = Q.defer();
-      if (!validateUcpc(ucpc)) {
-        deferred.reject(new Error('Invalid UCPC.'));
-      }
+      if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
       sendRequest(ucpc, null, (err: string, data: object): undefined => {
+        if (err) return deferred.reject(err);
+        return deferred.resolve(data);
+      });
+      return deferred.promise;
+    },
+
+    user(ucpc: string): undefined {
+      const deferred = Q.defer();
+      if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
+      sendRequest(`${ucpc}/user`, null, (err: string, data: object): undefined => {
         if (err) return deferred.reject(err);
         return deferred.resolve(data);
       });

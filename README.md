@@ -51,3 +51,12 @@ Strain
   .then(data => console.log(data))
   .catch(err => console.log(err))
 ```
+
+#### Strain.user(ucpc)
+```javascript
+// returns a single user object of the user who added the strain to the database
+Strain
+  .strain('VUJCJ4TYMG000000000000000')
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
