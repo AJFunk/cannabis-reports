@@ -33,3 +33,73 @@ describe('Flower.type()', () => {
     Flower.type('not a real type').catch((err) => expect(err).to.be.an('error'))
   );
 });
+
+describe('Flower.user()', () => {
+  it('returns object', () =>
+    Flower.user('AHZ7H4N6467FVUDY3DAY00000')
+    .then((data) => expect(typeof(data)).to.equal('object'))
+  );
+  it('returns error message', () =>
+    Flower.user('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Flower.user('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Flower.user('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Flower.user('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Flower.user('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
+  );
+});
+
+describe('Flower.reviews()', () => {
+  it('returns array', () =>
+    Flower.reviews('AHZ7H4N6467FVUDY3DAY00000')
+    .then((data) => expect(data).to.be.instanceof(Array))
+  );
+  it('returns array', () =>
+    Flower.reviews('AHZ7H4N6467FVUDY3DAY00000', { page: 2 })
+    .then((data) => expect(data).to.be.instanceof(Array))
+  );
+  it('returns error message', () =>
+    Flower.reviews('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Flower.reviews('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Flower.reviews('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Flower.reviews('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Flower.reviews('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
+  );
+});
+
+describe('Flower.effectsFlavors()', () => {
+  it('returns object', () =>
+    Flower.effectsFlavors('AHZ7H4N6467FVUDY3DAY00000')
+    .then((data) => expect(typeof(data)).to.equal('object'))
+  );
+  it('returns error message', () =>
+    Flower.effectsFlavors('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Flower.effectsFlavors('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Flower.effectsFlavors('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Flower.effectsFlavors('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Flower.effectsFlavors('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
+  );
+});

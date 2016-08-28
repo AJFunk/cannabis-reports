@@ -20,11 +20,11 @@ export default function flower(apiKey: string, baseUrl: string): object {
     );
   }
 
-  // function validateUcpc(ucpc: string): boolean {
-  //   if (!ucpc || ucpc.length !== 25) return false;
-  //   if (typeof(ucpc) !== 'string' || /[^a-zA-Z0-9]/.test(ucpc)) return false;
-  //   return true;
-  // }
+  function validateUcpc(ucpc: string): boolean {
+    if (!ucpc || ucpc.length !== 25) return false;
+    if (typeof(ucpc) !== 'string' || /[^a-zA-Z0-9]/.test(ucpc)) return false;
+    return true;
+  }
 
   function validateFlowerType(flowerType: string): boolean {
     const validTypes = ['flowers', 'seeds', 'clones', 'shake'];
@@ -50,6 +50,36 @@ export default function flower(apiKey: string, baseUrl: string): object {
         deferred.reject(new Error('Invalid Flower Type.'));
       }
       sendRequest(`type/${flowerType}`, options, (err: string, data: object): undefined => {
+        if (err) return deferred.reject(err);
+        return deferred.resolve(data);
+      });
+      return deferred.promise;
+    },
+
+    user(ucpc: string): undefined {
+      const deferred = Q.defer();
+      if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
+      sendRequest(`${ucpc}/user`, null, (err: string, data: object): undefined => {
+        if (err) return deferred.reject(err);
+        return deferred.resolve(data);
+      });
+      return deferred.promise;
+    },
+
+    reviews(ucpc: string, options: object): undefined {
+      const deferred = Q.defer();
+      if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
+      sendRequest(`${ucpc}/reviews`, options, (err: string, data: object): undefined => {
+        if (err) return deferred.reject(err);
+        return deferred.resolve(data);
+      });
+      return deferred.promise;
+    },
+
+    effectsFlavors(ucpc: string): undefined {
+      const deferred = Q.defer();
+      if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
+      sendRequest(`${ucpc}/effectsFlavors`, null, (err: string, data: object): undefined => {
         if (err) return deferred.reject(err);
         return deferred.resolve(data);
       });

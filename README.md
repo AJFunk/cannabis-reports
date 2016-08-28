@@ -34,6 +34,9 @@ import { Strain } from 'cannabis-reports';
 ## Flowers
 * [Flower.all()](#flower-all)
 * [Flower.type()](#flower-type)
+* [Flower.user()](#flower-user)
+* [Flower.reviews()](#flower-reviews)
+* [Flower.effectsFlavors()](#flower-effectsFlavors)
 
 - - -
 <h3 id='strain-all'>Strain.all(options)</h3>
@@ -212,6 +215,43 @@ returns an Array of products for a given type.
 ```javascript
 Flower
   .type(flowerType, options)
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+<h3 id='flower-user'>Flower.user(ucpc)</h3>
+returns a single user object of the user who added the flower to the database.
+
+##### `ucpc` (required) - [String]
+
+```javascript
+Flower
+  .flower('VUJCJ4TYMG000000000000000')
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='flower-reviews'>Flower.reviews(ucpc, options)</h3>
+returns an array of reviews for a cannabis flower.
+
+##### `ucpc` (required) - [String]
+##### `options` (optional) - [Object]
+* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want. Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
+
+```javascript
+Flower
+  .reviews('VUJCJ4TYMG000000000000000', options)
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='flower-effectsFlavors'>Flower.effectsFlavors(ucpc)</h3>
+returns a object containing the average effects and flavors from reviews for this flower.
+
+##### `ucpc` (required) - [String]
+
+```javascript
+Flower
+  .effectsFlavors('VUJCJ4TYMG000000000000000')
   .then(data => console.log(data))
   .catch(err => console.log(err))
 ```
