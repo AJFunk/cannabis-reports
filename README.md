@@ -18,6 +18,9 @@ import { Strain } from 'cannabis-reports';
 Strain
   .all()
   .then((data) => {
-    console.log("Strains: ", data);
+    console.log('Strains: ', data);
+  })
+  .catch((err) => {
+    console.log('Err: ', err);
   })
 ```

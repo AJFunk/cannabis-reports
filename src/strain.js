@@ -21,7 +21,10 @@ export default function strain(apiKey: string, baseUrl: string): object {
   return {
     all(options: object): undefined {
       const deferred = Q.defer();
-      sendRequest(null, options, (err: string, data: object): undefined => deferred.resolve(data));
+      sendRequest(null, options, (err: string, data: object): undefined => {
+        if (err) return deferred.reject(err);
+        return deferred.resolve(data);
+      });
       return deferred.promise;
     },
   };
