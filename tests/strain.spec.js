@@ -57,22 +57,48 @@ describe('Strain.strain()', () => {
 
 describe('Strain.user()', () => {
   it('returns object', () =>
-    Strain.strain('VUJCJ4TYMG000000000000000')
+    Strain.user('VUJCJ4TYMG000000000000000')
     .then((data) => expect(typeof(data)).to.equal('object'))
   );
   it('returns error message', () =>
-    Strain.strain('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
+    Strain.user('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Strain.strain('VUJCJ4TYMG00&00000000000').catch((err) => expect(err).to.be.an('error'))
+    Strain.user('VUJCJ4TYMG00&00000000000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Strain.strain('VUJCJ4TYMG00 00000000000').catch((err) => expect(err).to.be.an('error'))
+    Strain.user('VUJCJ4TYMG00 00000000000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Strain.strain('VUJCJ4TYMG00_000000&0000').catch((err) => expect(err).to.be.an('error'))
+    Strain.user('VUJCJ4TYMG00_000000&0000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Strain.strain('VUJCJ4TYMG00!000000&0000').catch((err) => expect(err).to.be.an('error'))
+    Strain.user('VUJCJ4TYMG00!000000&0000').catch((err) => expect(err).to.be.an('error'))
+  );
+});
+
+describe('Strain.reviews()', () => {
+  it('returns array', () =>
+    Strain.reviews('VUJCJ4TYMG000000000000000')
+    .then((data) => expect(data).to.be.instanceof(Array))
+  );
+  it('returns array', () =>
+    Strain.reviews('VUJCJ4TYMG000000000000000', { page: 2 })
+    .then((data) => expect(data).to.be.instanceof(Array))
+  );
+  it('returns error message', () =>
+    Strain.reviews('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Strain.reviews('VUJCJ4TYMG00&00000000000').catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Strain.reviews('VUJCJ4TYMG00 00000000000').catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Strain.reviews('VUJCJ4TYMG00_000000&0000').catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Strain.reviews('VUJCJ4TYMG00!000000&0000').catch((err) => expect(err).to.be.an('error'))
   );
 });

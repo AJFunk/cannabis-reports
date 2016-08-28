@@ -38,7 +38,9 @@ export default function strain(apiKey: string, baseUrl: string): object {
 
     search(query: string, options: object): undefined {
       const deferred = Q.defer();
-      if (!query || typeof(query) !== 'string') deferred.reject(new Error('A string query is required.'));
+      if (!query || typeof(query) !== 'string') {
+        deferred.reject(new Error('A string query is required.'));
+      }
       sendRequest(`search/${query}`, options, (err: string, data: object): undefined => {
         if (err) return deferred.reject(err);
         return deferred.resolve(data);
@@ -60,6 +62,16 @@ export default function strain(apiKey: string, baseUrl: string): object {
       const deferred = Q.defer();
       if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
       sendRequest(`${ucpc}/user`, null, (err: string, data: object): undefined => {
+        if (err) return deferred.reject(err);
+        return deferred.resolve(data);
+      });
+      return deferred.promise;
+    },
+
+    reviews(ucpc: string, options: object): undefined {
+      const deferred = Q.defer();
+      if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
+      sendRequest(`${ucpc}/reviews`, options, (err: string, data: object): undefined => {
         if (err) return deferred.reject(err);
         return deferred.resolve(data);
       });

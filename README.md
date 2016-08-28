@@ -20,10 +20,11 @@ import { Strain } from 'cannabis-reports';
 * [Strain.search()](#strain-search)
 * [Strain.strain()](#strain-strain)
 * [Strain.user()](#strain-user)
+* [Strain.reviews()](#strain-reviews)
 - - -
 <h4 id='strain-all'>Strain.all(options)</h4>
 
-##### options
+##### `options` (optional)
 * `sort` - [String] see [sort types](https://developers.cannabisreports.com/docs/strains#sort)
 * `page` - [Number]
 
@@ -37,8 +38,8 @@ Strain
 
 <h4 id='strain-search'> Strain.search(query, options)</h4>
 
-##### `query` - [String]
-##### options
+##### `query` (required) - [String]
+##### `options` (optional)
 * `page` - [Number]
 
 ```javascript
@@ -51,6 +52,8 @@ Strain
 
 <h4 id='strain-strain'>Strain.strain(ucpc)</h4>
 
+##### `ucpc` (required) - [String]
+
 ```javascript
 // returns a single strain object
 Strain
@@ -60,6 +63,22 @@ Strain
 ```
 
 <h4 id='strain-user'>Strain.user(ucpc)</h4>
+
+##### `ucpc` (required) - [String]
+
+```javascript
+// returns a single user object of the user who added the strain to the database
+Strain
+  .strain('VUJCJ4TYMG000000000000000')
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h4 id='strain-reviews'>Strain.reviews(ucpc, options)</h4>
+
+##### `ucpc` (required) - [String]
+##### `options` (optional)
+* `page` - [Number]
 
 ```javascript
 // returns a single user object of the user who added the strain to the database
