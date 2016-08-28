@@ -42,16 +42,16 @@ describe('Strain.strain()', () => {
     Strain.strain('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Strain.strain('VUJCJ4TYMG00&00000000000').catch((err) => expect(err).to.be.an('error'))
+    Strain.strain('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Strain.strain('VUJCJ4TYMG00 00000000000').catch((err) => expect(err).to.be.an('error'))
+    Strain.strain('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Strain.strain('VUJCJ4TYMG00_000000&0000').catch((err) => expect(err).to.be.an('error'))
+    Strain.strain('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Strain.strain('VUJCJ4TYMG00!000000&0000').catch((err) => expect(err).to.be.an('error'))
+    Strain.strain('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
 });
 
@@ -64,16 +64,16 @@ describe('Strain.user()', () => {
     Strain.user('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Strain.user('VUJCJ4TYMG00&00000000000').catch((err) => expect(err).to.be.an('error'))
+    Strain.user('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Strain.user('VUJCJ4TYMG00 00000000000').catch((err) => expect(err).to.be.an('error'))
+    Strain.user('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Strain.user('VUJCJ4TYMG00_000000&0000').catch((err) => expect(err).to.be.an('error'))
+    Strain.user('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Strain.user('VUJCJ4TYMG00!000000&0000').catch((err) => expect(err).to.be.an('error'))
+    Strain.user('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
 });
 
@@ -90,16 +90,16 @@ describe('Strain.reviews()', () => {
     Strain.reviews('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Strain.reviews('VUJCJ4TYMG00&00000000000').catch((err) => expect(err).to.be.an('error'))
+    Strain.reviews('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Strain.reviews('VUJCJ4TYMG00 00000000000').catch((err) => expect(err).to.be.an('error'))
+    Strain.reviews('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Strain.reviews('VUJCJ4TYMG00_000000&0000').catch((err) => expect(err).to.be.an('error'))
+    Strain.reviews('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Strain.reviews('VUJCJ4TYMG00!000000&0000').catch((err) => expect(err).to.be.an('error'))
+    Strain.reviews('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
 });
 
@@ -112,16 +112,16 @@ describe('Strain.effectsFlavors()', () => {
     Strain.effectsFlavors('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Strain.effectsFlavors('VUJCJ4TYMG00&00000000000').catch((err) => expect(err).to.be.an('error'))
+    Strain.effectsFlavors('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Strain.effectsFlavors('VUJCJ4TYMG00 00000000000').catch((err) => expect(err).to.be.an('error'))
+    Strain.effectsFlavors('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Strain.effectsFlavors('VUJCJ4TYMG00_000000&0000').catch((err) => expect(err).to.be.an('error'))
+    Strain.effectsFlavors('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Strain.effectsFlavors('VUJCJ4TYMG00!000000&0000').catch((err) => expect(err).to.be.an('error'))
+    Strain.effectsFlavors('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
 });
 
@@ -134,16 +134,16 @@ describe('Strain.seedCompany()', () => {
     Strain.seedCompany('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Strain.seedCompany('VUJCJ4TYMG00&00000000000').catch((err) => expect(err).to.be.an('error'))
+    Strain.seedCompany('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Strain.seedCompany('VUJCJ4TYMG00 00000000000').catch((err) => expect(err).to.be.an('error'))
+    Strain.seedCompany('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Strain.seedCompany('VUJCJ4TYMG00_000000&0000').catch((err) => expect(err).to.be.an('error'))
+    Strain.seedCompany('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Strain.seedCompany('VUJCJ4TYMG00!000000&0000').catch((err) => expect(err).to.be.an('error'))
+    Strain.seedCompany('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
 });
 
@@ -156,16 +156,16 @@ describe('Strain.genetics()', () => {
     Strain.genetics('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Strain.genetics('VUJCJ4TYMG00&00000000000').catch((err) => expect(err).to.be.an('error'))
+    Strain.genetics('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Strain.genetics('VUJCJ4TYMG00 00000000000').catch((err) => expect(err).to.be.an('error'))
+    Strain.genetics('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Strain.genetics('VUJCJ4TYMG00_000000&0000').catch((err) => expect(err).to.be.an('error'))
+    Strain.genetics('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Strain.genetics('VUJCJ4TYMG00!000000&0000').catch((err) => expect(err).to.be.an('error'))
+    Strain.genetics('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
 });
 
@@ -182,15 +182,64 @@ describe('Strain.children()', () => {
     Strain.children('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Strain.children('VUJCJ4TYMG00&00000000000').catch((err) => expect(err).to.be.an('error'))
+    Strain.children('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Strain.children('VUJCJ4TYMG00 00000000000').catch((err) => expect(err).to.be.an('error'))
+    Strain.children('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Strain.children('VUJCJ4TYMG00_000000&0000').catch((err) => expect(err).to.be.an('error'))
+    Strain.children('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
-    Strain.children('VUJCJ4TYMG00!000000&0000').catch((err) => expect(err).to.be.an('error'))
+    Strain.children('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
+  );
+});
+
+describe('Strain.availability()', () => {
+  it('returns array', () =>
+    Strain.availability('VUJCJ4TYMG000000000000000', 37.7749295, -122.4194155)
+    .then((data) => expect(data).to.be.instanceof(Array))
+  );
+  it('returns array', () =>
+    Strain.availability('VUJCJ4TYMG000000000000000', '37.7749295', '-122.4194155')
+    .then((data) => expect(data).to.be.instanceof(Array))
+  );
+  it('returns array', () =>
+    Strain.availability('VUJCJ4TYMG000000000000000', 37.7749295, -122.4194155, { page: 2 })
+    .then((data) => expect(data).to.be.instanceof(Array))
+  );
+  it('returns array', () =>
+    Strain.availability('VUJCJ4TYMG000000000000000', '37.7749295', '-122.4194155', { page: 2 })
+    .then((data) => expect(data).to.be.instanceof(Array))
+  );
+  it('returns error message', () =>
+    Strain.availability('VUJCJ4TYMG00000000000000', [37.7749295], -122.4194155)
+    .catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Strain.availability('VUJCJ4TYMG00000000000000', 37.7749295, [-122.4194155])
+    .catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Strain.availability('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Strain.availability('VUJCJ4TYMG00000000000000', 37.7749295)
+    .catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Strain.availability('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Strain.availability('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Strain.availability('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Strain.availability('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Strain.availability('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
 });

@@ -25,6 +25,7 @@ import { Strain } from 'cannabis-reports';
 * [Strain.seedCompany()](#strain-seedCompany)
 * [Strain.genetics()](#strain-genetics)
 * [Strain.children()](#strain-children)
+* [Strain.availability()](#strain-availability)
 
 - - -
 <h3 id='strain-all'>Strain.all(options)</h3>
@@ -32,9 +33,7 @@ returns an Array of strain objects.
 
 ##### `options` (optional) - [Object]
 * `sort` - [String] see [sort types](https://developers.cannabisreports.com/docs/strains#sort)
-* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want.
-
-Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
+* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want. Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
 
 ```javascript
 Strain
@@ -48,9 +47,7 @@ returns an Array of strain objects matching the search query.
 
 ##### `query` (required) - [String]
 ##### `options` (optional) - [Object]
-* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want.
-
-Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
+* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want. Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
 
 ```javascript
 Strain
@@ -88,9 +85,7 @@ returns an array of reviews for a cannabis strain.
 
 ##### `ucpc` (required) - [String]
 ##### `options` (optional) - [Object]
-* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want.
-
-Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
+* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want. Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
 
 ```javascript
 Strain
@@ -140,13 +135,28 @@ returns an array of the child strains that this one has been bred into.
 
 ##### `ucpc` (required) - [String]
 ##### `options` (optional) - [Object]
-* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want.
-
-Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
+* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want. Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
 
 ```javascript
 Strain
   .children('VUJCJ4TYMG000000000000000', options)
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='strain-availability'>Strain.availability(ucpc, lat, lng, options)</h3>
+returns an array of the child strains that this one has been bred into.
+
+##### `ucpc` (required) - [String]
+##### `lat` (required) - [String] or [Number]
+##### `lng` (required) - [String] or [Number]
+##### `options` (optional) - [Object]
+* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want. Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
+* `radius` - [Number] Radius to search for in miles, max 25.
+
+```javascript
+Strain
+  .availability('VUJCJ4TYMG000000000000000', 37.7749295, -122.4194155, options)
   .then(data => console.log(data))
   .catch(err => console.log(err))
 ```
