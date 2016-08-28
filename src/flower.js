@@ -56,6 +56,16 @@ export default function flower(apiKey: string, baseUrl: string): object {
       return deferred.promise;
     },
 
+    flower(ucpc: string): undefined {
+      const deferred = Q.defer();
+      if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
+      sendRequest(`${ucpc}`, null, (err: string, data: object): undefined => {
+        if (err) return deferred.reject(err);
+        return deferred.resolve(data);
+      });
+      return deferred.promise;
+    },
+
     user(ucpc: string): undefined {
       const deferred = Q.defer();
       if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));

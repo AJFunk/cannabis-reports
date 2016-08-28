@@ -34,6 +34,28 @@ describe('Flower.type()', () => {
   );
 });
 
+describe('Flower.flower()', () => {
+  it('returns object', () =>
+    Flower.flower('AHZ7H4N6467FVUDY3DAY00000')
+    .then((data) => expect(typeof(data)).to.equal('object'))
+  );
+  it('returns error message', () =>
+    Flower.flower('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Flower.flower('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Flower.flower('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Flower.flower('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Flower.flower('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
+  );
+});
+
 describe('Flower.user()', () => {
   it('returns object', () =>
     Flower.user('AHZ7H4N6467FVUDY3DAY00000')

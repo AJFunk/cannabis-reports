@@ -220,6 +220,19 @@ Flower
   .then(data => console.log(data))
   .catch(err => console.log(err))
 ```
+
+<h3 id='flower-flower'>Flower.flower(ucpc)</h3>
+returns a single flower object with the specified UCPC.
+
+##### `ucpc` (required) - [String]
+
+```javascript
+Flower
+  .flower('AHZ7H4N6467FVUDY3DAY00000')
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
 <h3 id='flower-user'>Flower.user(ucpc)</h3>
 returns a single user object of the user who added the flower to the database.
 
@@ -227,7 +240,7 @@ returns a single user object of the user who added the flower to the database.
 
 ```javascript
 Flower
-  .flower('AHZ7H4N6467FVUDY3DAY00000')
+  .user('AHZ7H4N6467FVUDY3DAY00000')
   .then(data => console.log(data))
   .catch(err => console.log(err))
 ```
