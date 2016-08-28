@@ -147,3 +147,52 @@ describe('Flower.strain()', () => {
     Flower.strain('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
 });
+
+describe('Flower.availability()', () => {
+  it('returns array', () =>
+    Flower.availability('AHZ7H4N6467FVUDY3DAY00000', 37.7749295, -122.4194155)
+    .then((data) => expect(data).to.be.instanceof(Array))
+  );
+  it('returns array', () =>
+    Flower.availability('AHZ7H4N6467FVUDY3DAY00000', '37.7749295', '-122.4194155')
+    .then((data) => expect(data).to.be.instanceof(Array))
+  );
+  it('returns array', () =>
+    Flower.availability('AHZ7H4N6467FVUDY3DAY00000', 37.7749295, -122.4194155, { page: 2 })
+    .then((data) => expect(data).to.be.instanceof(Array))
+  );
+  it('returns array', () =>
+    Flower.availability('AHZ7H4N6467FVUDY3DAY00000', '37.7749295', '-122.4194155', { page: 2 })
+    .then((data) => expect(data).to.be.instanceof(Array))
+  );
+  it('returns error message', () =>
+    Flower.availability('VUJCJ4TYMG00000000000000', [37.7749295], -122.4194155)
+    .catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Flower.availability('VUJCJ4TYMG00000000000000', 37.7749295, [-122.4194155])
+    .catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Flower.availability('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Flower.availability('VUJCJ4TYMG00000000000000', 37.7749295)
+    .catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Flower.availability('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Flower.availability('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Flower.availability('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Flower.availability('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns error message', () =>
+    Flower.availability('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
+  );
+});

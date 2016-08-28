@@ -227,7 +227,7 @@ returns a single user object of the user who added the flower to the database.
 
 ```javascript
 Flower
-  .flower('VUJCJ4TYMG000000000000000')
+  .flower('AHZ7H4N6467FVUDY3DAY00000')
   .then(data => console.log(data))
   .catch(err => console.log(err))
 ```
@@ -241,7 +241,7 @@ returns an array of reviews for a cannabis flower.
 
 ```javascript
 Flower
-  .reviews('VUJCJ4TYMG000000000000000', options)
+  .reviews('AHZ7H4N6467FVUDY3DAY00000', options)
   .then(data => console.log(data))
   .catch(err => console.log(err))
 ```
@@ -253,7 +253,7 @@ returns a object containing the average effects and flavors from reviews for thi
 
 ```javascript
 Flower
-  .effectsFlavors('VUJCJ4TYMG000000000000000')
+  .effectsFlavors('AHZ7H4N6467FVUDY3DAY00000')
   .then(data => console.log(data))
   .catch(err => console.log(err))
 ```
@@ -265,7 +265,7 @@ returns a object for the producer of a flower.
 
 ```javascript
 Flower
-  .producer('VUJCJ4TYMG000000000000000')
+  .producer('AHZ7H4N6467FVUDY3DAY00000')
   .then(data => console.log(data))
   .catch(err => console.log(err))
 ```
@@ -276,7 +276,24 @@ returns a object for the strain of a flower.
 
 ```javascript
 Flower
-  .strain('VUJCJ4TYMG000000000000000')
+  .strain('AHZ7H4N6467FVUDY3DAY00000')
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='flower-availability'>Flower.availability(ucpc, lat, lng, options)</h3>
+returns an Array of information about the availability of a flower using latitude and longitude.
+
+##### `ucpc` (required) - [String]
+##### `lat` (required) - [String] or [Number]
+##### `lng` (required) - [String] or [Number]
+##### `options` (optional) - [Object]
+* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want. Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
+* `radius` - [Number] Radius to search for in miles, max 25.
+
+```javascript
+Flower
+  .availability('AHZ7H4N6467FVUDY3DAY00000', 37.7749295, -122.4194155, options)
   .then(data => console.log(data))
   .catch(err => console.log(err))
 ```

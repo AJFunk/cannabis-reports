@@ -106,5 +106,27 @@ export default function flower(apiKey: string, baseUrl: string): object {
       return deferred.promise;
     },
 
+    availability(ucpc: string, lat: string, lng: string, options: object): undefined {
+      const deferred = Q.defer();
+      if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
+      if (!lat) deferred.reject(new Error('Latitude is required'));
+      if (!(typeof(lat) === 'string' || typeof(lat) === 'number')) {
+        deferred.reject(new Error('Latitude must be a string or number.'));
+      }
+      if (!lng) deferred.reject(new Error('Longitude is required'));
+      if (!(typeof(lng) === 'string' || typeof(lng) === 'number')) {
+        deferred.reject(new Error('Longitude must be a string or number.'));
+      }
+      const radius = options.radius ? `/${options.radius}` : '';
+      sendRequest(`${ucpc}/availability/geo/${lat}/${lng}${radius}`,
+        options,
+        (err: string, data: object): undefined => {
+          if (err) return deferred.reject(err);
+          return deferred.resolve(data);
+        }
+      );
+      return deferred.promise;
+    },
+
   };
 }
