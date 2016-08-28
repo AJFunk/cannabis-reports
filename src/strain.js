@@ -78,5 +78,45 @@ export default function strain(apiKey: string, baseUrl: string): object {
       return deferred.promise;
     },
 
+    effectsFlavors(ucpc: string): undefined {
+      const deferred = Q.defer();
+      if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
+      sendRequest(`${ucpc}/effectsFlavors`, null, (err: string, data: object): undefined => {
+        if (err) return deferred.reject(err);
+        return deferred.resolve(data);
+      });
+      return deferred.promise;
+    },
+
+    seedCompany(ucpc: string): undefined {
+      const deferred = Q.defer();
+      if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
+      sendRequest(`${ucpc}/seedCompany`, null, (err: string, data: object): undefined => {
+        if (err) return deferred.reject(err);
+        return deferred.resolve(data);
+      });
+      return deferred.promise;
+    },
+
+    genetics(ucpc: string): undefined {
+      const deferred = Q.defer();
+      if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
+      sendRequest(`${ucpc}/genetics`, null, (err: string, data: object): undefined => {
+        if (err) return deferred.reject(err);
+        return deferred.resolve(data);
+      });
+      return deferred.promise;
+    },
+
+    children(ucpc: string, options: object): undefined {
+      const deferred = Q.defer();
+      if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
+      sendRequest(`${ucpc}/children`, options, (err: string, data: object): undefined => {
+        if (err) return deferred.reject(err);
+        return deferred.resolve(data);
+      });
+      return deferred.promise;
+    },
+
   };
 }
