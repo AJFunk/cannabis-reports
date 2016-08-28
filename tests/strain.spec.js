@@ -1,6 +1,6 @@
 import { Strain } from 'index';
 
-describe('strain', () => {
+describe('Strain.all()', () => {
   it('returns array', () =>
     Strain.all().then((data) => expect(data).to.be.instanceof(Array))
   );
@@ -18,5 +18,17 @@ describe('strain', () => {
   );
   it('returns array', () =>
     Strain.all({ page: 3 }).then((data) => expect(data).to.be.instanceof(Array))
+  );
+});
+
+describe('Strain.search()', () => {
+  it('returns array', () =>
+    Strain.search('orange').then((data) => expect(data).to.be.instanceof(Array))
+  );
+  it('returns error message', () =>
+    Strain.search({ testing: 'testing' }).catch((err) => expect(err).to.be.an('error'))
+  );
+  it('returns array', () =>
+    Strain.search('orange', { page: 2 }).then((data) => expect(data).to.be.instanceof(Array))
   );
 });

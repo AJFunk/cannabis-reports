@@ -27,5 +27,16 @@ export default function strain(apiKey: string, baseUrl: string): object {
       });
       return deferred.promise;
     },
+    search(query: string, options: object): undefined {
+      const deferred = Q.defer();
+      if (!query || typeof(query) !== 'string') {
+        deferred.reject(new Error('A string query is required.'));
+      }
+      sendRequest(`search/${query}`, options, (err: string, data: object): undefined => {
+        if (err) return deferred.reject(err);
+        return deferred.resolve(data);
+      });
+      return deferred.promise;
+    },
   };
 }
