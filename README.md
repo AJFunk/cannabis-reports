@@ -12,7 +12,7 @@ npm install --save cannabis-reports
 ### Usage
 
 ```javascript
-import { Strain, Flower } from 'cannabis-reports';
+import { Strain, Flower, Extract } from 'cannabis-reports';
 ```
 Only import the modules your need. For example, if you only need the `Strain` module:
 ```javascript
@@ -39,6 +39,15 @@ import { Strain } from 'cannabis-reports';
 * [Flower.effectsFlavors()](#flower-effectsFlavors)
 * [Flower.producer()](#flower-producer)
 * [Flower.strain()](#flower-strain)
+
+## Extracts
+* [Extract.all()](#extract-all)
+* [Extract.type()](#extract-type)
+* [Extract.user()](#extract-user)
+* [Extract.reviews()](#extract-reviews)
+* [Extract.effectsFlavors()](#extract-effectsFlavors)
+* [Extract.producer()](#extract-producer)
+* [Extract.strain()](#extract-strain)
 
 - - -
 <h3 id='strain-all'>Strain.all(options)</h3>
@@ -307,6 +316,143 @@ returns an Array of information about the availability of a flower using latitud
 ```javascript
 Flower
   .availability('AHZ7H4N6467FVUDY3DAY00000', 37.7749295, -122.4194155, options)
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='extract-all'>Extract.all(options)</h3>
+returns an Array of extract objects.
+
+##### `options` (optional) - [Object]
+* `sort` - [String] Possible values:
+	* `createdAt` - Oldest records
+	* `-createdAt` - Newest records
+	* `updatedAt` - Oldest updated records
+	* `-updatedAt` - Newest updated records
+* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want. Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
+
+```javascript
+Extract
+  .all(options)
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='extract-type'>Extract.type(extractType, options)</h3>
+returns an Array of products for a given type.
+
+##### `extractType` (required) - [String] (case-insensitive) Possible values:
+* `kief`
+* `hash`
+* `water-hash`
+* `oil`
+* `wax`
+* `crumble`
+* `honeycomb`
+* `shatter`
+* `vaporizer-disposable`
+* `vaporizer-cartridge`
+##### `options` (optional) - [Object]
+* `sort` - [String] Possible values:
+	* `createdAt` - Oldest records
+	* `-createdAt` - Newest records
+	* `updatedAt` - Oldest updated records
+	* `-updatedAt` - Newest updated records
+* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want. Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
+
+```javascript
+Extract
+  .type(extractType, options)
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='extract-flower'>Extract.flower(ucpc)</h3>
+returns a single extract object with the specified UCPC.
+
+##### `ucpc` (required) - [String]
+
+```javascript
+Extract
+  .flower('3CV7E33XLHTJT2XZ4GMD00000')
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='extract-user'>Extract.user(ucpc)</h3>
+returns a single user object of the user who added the extract to the database.
+
+##### `ucpc` (required) - [String]
+
+```javascript
+Extract
+  .user('3CV7E33XLHTJT2XZ4GMD00000')
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='extract-reviews'>Extract.reviews(ucpc, options)</h3>
+returns an array of reviews for a cannabis extract.
+
+##### `ucpc` (required) - [String]
+##### `options` (optional) - [Object]
+* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want. Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
+
+```javascript
+Extract
+  .reviews('3CV7E33XLHTJT2XZ4GMD00000', options)
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='extract-effectsFlavors'>Extract.effectsFlavors(ucpc)</h3>
+returns a object containing the average effects and flavors from reviews for this extract.
+
+##### `ucpc` (required) - [String]
+
+```javascript
+Extract
+  .effectsFlavors('3CV7E33XLHTJT2XZ4GMD00000')
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='extract-producer'>Extract.producer(ucpc)</h3>
+returns a object for the producer of a extract.
+
+##### `ucpc` (required) - [String]
+
+```javascript
+Extract
+  .producer('3CV7E33XLHTJT2XZ4GMD00000')
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+<h3 id='extract-strain'>Extract.strain(ucpc)</h3>
+returns a object for the strain of a extract.
+
+##### `ucpc` (required) - [String]
+
+```javascript
+Extract
+  .strain('3CV7E33XLHTJT2XZ4GMD00000')
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='extract-availability'>Extract.availability(ucpc, lat, lng, options)</h3>
+returns an Array of information about the availability of a extract using latitude and longitude.
+
+##### `ucpc` (required) - [String]
+##### `lat` (required) - [String] or [Number]
+##### `lng` (required) - [String] or [Number]
+##### `options` (optional) - [Object]
+* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want. Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
+* `radius` - [Number] Radius to search for in miles, max 25.
+
+```javascript
+Extract
+  .availability('3CV7E33XLHTJT2XZ4GMD00000', 37.7749295, -122.4194155, options)
   .then(data => console.log(data))
   .catch(err => console.log(err))
 ```
