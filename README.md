@@ -33,13 +33,14 @@ import { Strain } from 'cannabis-reports';
 
 ## Flowers
 * [Flower.all()](#flower-all)
+* [Flower.type()](#flower-type)
 
 - - -
 <h3 id='strain-all'>Strain.all(options)</h3>
 returns an Array of strain objects.
 
 ##### `options` (optional) - [Object]
-* `sort` - [String]
+* `sort` - [String] Possible values:
 	* `createdAt` - Oldest records
 	* `-createdAt` - Newest records
 	* `updatedAt` - Oldest updated records
@@ -178,7 +179,7 @@ Strain
 returns an Array of flower objects.
 
 ##### `options` (optional) - [Object]
-* `sort` - [String] Possible Values:
+* `sort` - [String] Possible values:
 	* `createdAt` - Oldest records
 	* `-createdAt` - Newest records
 	* `updatedAt` - Oldest updated records
@@ -188,6 +189,29 @@ returns an Array of flower objects.
 ```javascript
 Flower
   .all(options)
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='flower-type'>Flower.type(flowerType, options)</h3>
+returns an Array of products for a given type.
+
+##### `flowerType` (required) - [String] (case-insensitive) Possible values:
+* `flowers`
+* `seeds`
+* `clones`
+* `shake`
+##### `options` (optional) - [Object]
+* `sort` - [String] Possible values:
+	* `createdAt` - Oldest records
+	* `-createdAt` - Newest records
+	* `updatedAt` - Oldest updated records
+	* `-updatedAt` - Newest updated records
+* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want. Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
+
+```javascript
+Flower
+  .type(flowerType, options)
   .then(data => console.log(data))
   .catch(err => console.log(err))
 ```

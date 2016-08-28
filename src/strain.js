@@ -21,7 +21,8 @@ export default function strain(apiKey: string, baseUrl: string): object {
   }
 
   function validateUcpc(ucpc: string): boolean {
-    if (!ucpc || ucpc.length !== 25 || /[^a-zA-Z0-9]/.test(ucpc)) return false;
+    if (!ucpc || ucpc.length !== 25) return false;
+    if (typeof(ucpc) !== 'string' || /[^a-zA-Z0-9]/.test(ucpc)) return false;
     return true;
   }
 
