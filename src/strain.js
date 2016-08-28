@@ -4,8 +4,10 @@ import Q from 'q';
 export default function strain(apiKey: string, baseUrl: string): object {
   function sendRequest(ucpc: string, options: object = {}, cb: object): undefined {
     let url = `${baseUrl}strains${(ucpc ? `/${ucpc}?` : '?')}`;
-    if (options.sort) url = `${url}sort=${options.sort}&`;
-    if (options.page) url = `${url}page=${options.page}`;
+    if (options) {
+      if (options.sort) url = `${url}sort=${options.sort}&`;
+      if (options.page) url = `${url}page=${options.page}`;
+    }
     request(
       url,
       (err: string, response: string, body: string): object => {
@@ -18,7 +20,13 @@ export default function strain(apiKey: string, baseUrl: string): object {
     );
   }
 
+  function validateUcpc(ucpc: string): boolean {
+    if (!ucpc || ucpc.length !== 25 || /[^a-zA-Z0-9]/.test(ucpc)) return false;
+    return true;
+  }
+
   return {
+
     all(options: object): undefined {
       const deferred = Q.defer();
       sendRequest(null, options, (err: string, data: object): undefined => {
@@ -27,6 +35,7 @@ export default function strain(apiKey: string, baseUrl: string): object {
       });
       return deferred.promise;
     },
+
     search(query: string, options: object): undefined {
       const deferred = Q.defer();
       if (!query || typeof(query) !== 'string') {
@@ -38,5 +47,18 @@ export default function strain(apiKey: string, baseUrl: string): object {
       });
       return deferred.promise;
     },
+
+    strain(ucpc: string): undefined {
+      const deferred = Q.defer();
+      if (!validateUcpc(ucpc)) {
+        deferred.reject(new Error('Invalid UCPC.'));
+      }
+      sendRequest(ucpc, null, (err: string, data: object): undefined => {
+        if (err) return deferred.reject(err);
+        return deferred.resolve(data);
+      });
+      return deferred.promise;
+    },
+
   };
 }

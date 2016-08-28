@@ -1,5 +1,6 @@
 ## Cannabis Reports
 A Cannabis Reports API wrapper for Node.js
+
 [![Build Status](https://travis-ci.org/AJFunk/cannabis-reports.svg?branch=master)](https://travis-ci.org/AJFunk/cannabis-reports)
 
 ### Installation
@@ -38,6 +39,15 @@ Strain
 // returns an Array of strain objects
 Strain
   .search('orange')
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+#### Strain.strain(ucpc)
+```javascript
+// returns a single strain object
+Strain
+  .strain('VUJCJ4TYMG000000000000000')
   .then(data => console.log(data))
   .catch(err => console.log(err))
 ```
