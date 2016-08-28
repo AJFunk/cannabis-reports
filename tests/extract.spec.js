@@ -8,7 +8,8 @@ describe('Extract.all()', () => {
     Extract.all({ sort: 'createdAt' }).then((data) => expect(data).to.be.instanceof(Array))
   );
   it('returns array sorted by createdAt', () =>
-    Extract.all({ sort: '-createdAt', page: 5 }).then((data) => expect(data).to.be.instanceof(Array))
+    Extract.all({ sort: '-createdAt', page: 5 })
+    .then((data) => expect(data).to.be.instanceof(Array))
   );
   it('returns array', () =>
     Extract.all({ page: 3 }).then((data) => expect(data).to.be.instanceof(Array))
@@ -20,7 +21,8 @@ describe('Extract.type()', () => {
     Extract.type('flowers').then((data) => expect(data).to.be.instanceof(Array))
   );
   it('returns array sorted by createdAt', () =>
-    Extract.type('sEeds', { sort: 'createdAt' }).then((data) => expect(data).to.be.instanceof(Array))
+    Extract.type('sEeds', { sort: 'createdAt' })
+    .then((data) => expect(data).to.be.instanceof(Array))
   );
   it('returns array sorted by createdAt', () =>
     Extract.type('clONes', { sort: '-createdAt', page: 5 })

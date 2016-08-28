@@ -12,11 +12,11 @@ npm install --save cannabis-reports
 ### Usage
 
 ```javascript
-import { Strain, Flower, Extract } from 'cannabis-reports';
+import { Strain, Flower, Extract, Edible } from 'cannabis-reports';
 ```
-Only import the modules your need. For example, if you only need the `Strain` module:
+Only import the modules your need. For example, if you only need the `Strain` and `Extract` modules:
 ```javascript
-import { Strain } from 'cannabis-reports';
+import { Strain, Extract } from 'cannabis-reports';
 ```
 
 ## Strains
@@ -48,6 +48,15 @@ import { Strain } from 'cannabis-reports';
 * [Extract.effectsFlavors()](#extract-effectsFlavors)
 * [Extract.producer()](#extract-producer)
 * [Extract.strain()](#extract-strain)
+
+## Edibles
+* [Edible.all()](#edible-all)
+* [Edible.type()](#edible-type)
+* [Edible.user()](#edible-user)
+* [Edible.reviews()](#edible-reviews)
+* [Edible.effectsFlavors()](#edible-effectsFlavors)
+* [Edible.producer()](#edible-producer)
+* [Edible.strain()](#edible-strain)
 
 - - -
 <h3 id='strain-all'>Strain.all(options)</h3>
@@ -367,14 +376,14 @@ Extract
   .catch(err => console.log(err))
 ```
 
-<h3 id='extract-flower'>Extract.flower(ucpc)</h3>
+<h3 id='extract-extract'>Extract.extract(ucpc)</h3>
 returns a single extract object with the specified UCPC.
 
 ##### `ucpc` (required) - [String]
 
 ```javascript
 Extract
-  .flower('3CV7E33XLHTJT2XZ4GMD00000')
+  .extract('3CV7E33XLHTJT2XZ4GMD00000')
   .then(data => console.log(data))
   .catch(err => console.log(err))
 ```
@@ -452,6 +461,146 @@ returns an Array of information about the availability of a extract using latitu
 
 ```javascript
 Extract
+  .availability('3CV7E33XLHTJT2XZ4GMD00000', 37.7749295, -122.4194155, options)
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='edible-all'>Edible.all(options)</h3>
+returns an Array of edible objects.
+
+##### `options` (optional) - [Object]
+* `sort` - [String] Possible values:
+	* `createdAt` - Oldest records
+	* `-createdAt` - Newest records
+	* `updatedAt` - Oldest updated records
+	* `-updatedAt` - Newest updated records
+* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want. Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
+
+```javascript
+Edible
+  .all(options)
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='edible-type'>Edible.type(edibleType, options)</h3>
+returns an Array of products for a given type.
+
+##### `edibleType` (required) - [String] (case-insensitive) Possible values:
+* `baked goods`
+* `candy`
+* `treat`
+* `chocolate`
+* `snack`
+* `beverage`
+* `pill`
+* `tincture`
+* `butter`
+* `honey`
+* `breath strips`
+* `tea`
+* `ice cream`
+##### `options` (optional) - [Object]
+* `sort` - [String] Possible values:
+	* `createdAt` - Oldest records
+	* `-createdAt` - Newest records
+	* `updatedAt` - Oldest updated records
+	* `-updatedAt` - Newest updated records
+* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want. Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
+
+```javascript
+Edible
+  .type(edibleType, options)
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='edible-edible'>Edible.edible(ucpc)</h3>
+returns a single edible object with the specified UCPC.
+
+##### `ucpc` (required) - [String]
+
+```javascript
+Edible
+  .edible('3CV7E33XLHTJT2XZ4GMD00000')
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='edible-user'>Edible.user(ucpc)</h3>
+returns a single user object of the user who added the edible to the database.
+
+##### `ucpc` (required) - [String]
+
+```javascript
+Edible
+  .user('3CV7E33XLHTJT2XZ4GMD00000')
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='edible-reviews'>Edible.reviews(ucpc, options)</h3>
+returns an array of reviews for a cannabis edible.
+
+##### `ucpc` (required) - [String]
+##### `options` (optional) - [Object]
+* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want. Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
+
+```javascript
+Edible
+  .reviews('3CV7E33XLHTJT2XZ4GMD00000', options)
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='edible-effectsFlavors'>Edible.effectsFlavors(ucpc)</h3>
+returns a object containing the average effects and flavors from reviews for this edible.
+
+##### `ucpc` (required) - [String]
+
+```javascript
+Edible
+  .effectsFlavors('3CV7E33XLHTJT2XZ4GMD00000')
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='edible-producer'>Edible.producer(ucpc)</h3>
+returns a object for the producer of a edible.
+
+##### `ucpc` (required) - [String]
+
+```javascript
+Edible
+  .producer('3CV7E33XLHTJT2XZ4GMD00000')
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+<h3 id='edible-strain'>Edible.strain(ucpc)</h3>
+returns a object for the strain of a edible.
+
+##### `ucpc` (required) - [String]
+
+```javascript
+Edible
+  .strain('3CV7E33XLHTJT2XZ4GMD00000')
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='edible-availability'>Edible.availability(ucpc, lat, lng, options)</h3>
+returns an Array of information about the availability of a edible using latitude and longitude.
+
+##### `ucpc` (required) - [String]
+##### `lat` (required) - [String] or [Number]
+##### `lng` (required) - [String] or [Number]
+##### `options` (optional) - [Object]
+* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want. Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
+* `radius` - [Number] Radius to search for in miles, max 25.
+
+```javascript
+Edible
   .availability('3CV7E33XLHTJT2XZ4GMD00000', 37.7749295, -122.4194155, options)
   .then(data => console.log(data))
   .catch(err => console.log(err))

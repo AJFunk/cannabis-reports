@@ -1,9 +1,9 @@
 import request from 'request';
 import Q from 'q';
 
-export default function extract(apiKey: string, baseUrl: string): object {
+export default function edible(apiKey: string, baseUrl: string): object {
   function sendRequest(endpoint: string, options: object = {}, cb: object): undefined {
-    let url = `${baseUrl}extracts${(endpoint ? `/${endpoint}?` : '?')}`;
+    let url = `${baseUrl}edibles${(endpoint ? `/${endpoint}?` : '?')}`;
     if (options) {
       if (options.sort) url = `${url}sort=${options.sort}&`;
       if (options.page) url = `${url}page=${options.page}`;
@@ -26,21 +26,25 @@ export default function extract(apiKey: string, baseUrl: string): object {
     return true;
   }
 
-  function validateExtractType(extractType: string): boolean {
+  function validateEdibleType(edibleType: string): boolean {
     const validTypes = [
-      'kief',
-      'hash',
-      'water-hash',
-      'oil',
-      'wax',
-      'crumble',
-      'honeycomb',
-      'shatter',
-      'vaporizer-disposable',
-      'vaporizer-cartridge',
+      'baked goods',
+      'candy',
+      'treat',
+      'chocolate',
+      'snack',
+      'beverage',
+      'pill',
+      'tincture',
+      'butter',
+      'honey',
+      'breath',
+      'strips',
+      'tea',
+      'ice cream',
     ];
-    if (!extractType || typeof(extractType) !== 'string') return false;
-    if (validTypes.indexOf(extractType) < 0) return false;
+    if (!edibleType || typeof(edibleType) !== 'string') return false;
+    if (validTypes.indexOf(edibleType) < 0) return false;
     return true;
   }
 
@@ -55,19 +59,19 @@ export default function extract(apiKey: string, baseUrl: string): object {
       return deferred.promise;
     },
 
-    type(extractType: string, options: object): undefined {
+    type(edibleType: string, options: object): undefined {
       const deferred = Q.defer();
-      if (!validateExtractType(extractType.toLowerCase())) {
-        deferred.reject(new Error('Invalid Extract Type.'));
+      if (!validateEdibleType(edibleType.toLowerCase())) {
+        deferred.reject(new Error('Invalid Edible Type.'));
       }
-      sendRequest(`type/${extractType}`, options, (err: string, data: object): undefined => {
+      sendRequest(`type/${edibleType}`, options, (err: string, data: object): undefined => {
         if (err) return deferred.reject(err);
         return deferred.resolve(data);
       });
       return deferred.promise;
     },
 
-    extract(ucpc: string): undefined {
+    edible(ucpc: string): undefined {
       const deferred = Q.defer();
       if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
       sendRequest(`${ucpc}`, null, (err: string, data: object): undefined => {
