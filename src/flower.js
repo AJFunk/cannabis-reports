@@ -86,5 +86,25 @@ export default function flower(apiKey: string, baseUrl: string): object {
       return deferred.promise;
     },
 
+    producer(ucpc: string): undefined {
+      const deferred = Q.defer();
+      if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
+      sendRequest(`${ucpc}/producer`, null, (err: string, data: object): undefined => {
+        if (err) return deferred.reject(err);
+        return deferred.resolve(data);
+      });
+      return deferred.promise;
+    },
+
+    strain(ucpc: string): undefined {
+      const deferred = Q.defer();
+      if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
+      sendRequest(`${ucpc}/strain`, null, (err: string, data: object): undefined => {
+        if (err) return deferred.reject(err);
+        return deferred.resolve(data);
+      });
+      return deferred.promise;
+    },
+
   };
 }

@@ -37,6 +37,8 @@ import { Strain } from 'cannabis-reports';
 * [Flower.user()](#flower-user)
 * [Flower.reviews()](#flower-reviews)
 * [Flower.effectsFlavors()](#flower-effectsFlavors)
+* [Flower.producer()](#flower-producer)
+* [Flower.strain()](#flower-strain)
 
 - - -
 <h3 id='strain-all'>Strain.all(options)</h3>
@@ -252,6 +254,29 @@ returns a object containing the average effects and flavors from reviews for thi
 ```javascript
 Flower
   .effectsFlavors('VUJCJ4TYMG000000000000000')
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='flower-producer'>Flower.producer(ucpc)</h3>
+returns a object for the producer of a flower.
+
+##### `ucpc` (required) - [String]
+
+```javascript
+Flower
+  .producer('VUJCJ4TYMG000000000000000')
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+<h3 id='flower-strain'>Flower.strain(ucpc)</h3>
+returns a object for the strain of a flower.
+
+##### `ucpc` (required) - [String]
+
+```javascript
+Flower
+  .strain('VUJCJ4TYMG000000000000000')
   .then(data => console.log(data))
   .catch(err => console.log(err))
 ```
