@@ -84,6 +84,11 @@ import { Strain, Extract } from 'cannabis-reports';
 * [Producer.products()](#producer-products)
 * [Producer.availability()](#producer-availability)
 
+## Seed Companies
+* [SeedCompany.seedCompany()](#seedCompany-seedCompany)
+* [SeedCompany.strains()](#seedCompany-strains)
+* [SeedCompany.reviews()](#seedCompany-reviews)
+
 - - -
 <h3 id='strain-all'>Strain.all(options)</h3>
 returns an Array of strain objects.
@@ -868,6 +873,54 @@ returns an Array of information about the availability of a producer using latit
 ```javascript
 Producer
   .availability('0000000000L6M7E0000000000', 37.7749295, -122.4194155, options)
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='seedCompany-seedCompany'>SeedCompany.seedCompany(ucpc)</h3>
+returns an individual seed company object with the specified UCPC.
+
+##### `ucpc` (required) - [String]
+
+```javascript
+Product
+  .seedCompany('VUJCJ00000000000000000000')
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='seedCompany-strains'>SeedCompany.strains(ucpc, options)</h3>
+returns an Array of strains offered by the specified seed company.
+
+##### `options` (optional) - [Object]
+* `sort` - [String] Possible values:
+	* `createdAt` - Oldest records
+	* `-createdAt` - Newest records
+	* `updatedAt` - Oldest updated records
+	* `-updatedAt` - Newest updated records
+* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want. Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
+
+```javascript
+SeedCompany
+  .seedCompany('VUJCJ00000000000000000000', options)
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='seedCompany-reviews'>SeedCompany.reviews(ucpc, options)</h3>
+returns an Array of reviews for the strains available from the seed company.
+
+##### `options` (optional) - [Object]
+* `sort` - [String] Possible values:
+	* `createdAt` - Oldest records
+	* `-createdAt` - Newest records
+	* `updatedAt` - Oldest updated records
+	* `-updatedAt` - Newest updated records
+* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want. Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
+
+```javascript
+SeedCompany
+  .reviews('VUJCJ00000000000000000000', options)
   .then(data => console.log(data))
   .catch(err => console.log(err))
 ```
