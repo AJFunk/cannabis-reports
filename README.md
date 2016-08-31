@@ -84,6 +84,14 @@ import { Strain, Extract } from 'cannabis-reports';
 * [Producer.products()](#producer-products)
 * [Producer.availability()](#producer-availability)
 
+## Dispensaries
+* [Dispensary.all()](#dispensary-all)
+* [Dispensary.dispensary()](#dispensary-dispensary)
+* [Dispensary.strains()](#dispensary-strains)
+* [Dispensary.extracts()](#dispensary-extracts)
+* [Dispensary.edibles()](#dispensary-edibles)
+* [Dispensary.products()](#dispensary-products)
+
 ## Seed Companies
 * [SeedCompany.seedCompany()](#seedCompany-seedCompany)
 * [SeedCompany.strains()](#seedCompany-strains)
@@ -921,6 +929,129 @@ returns an Array of reviews for the strains available from the seed company.
 ```javascript
 SeedCompany
   .reviews('VUJCJ00000000000000000000', options)
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='dispensary-all'>Dispensary.all(options)</h3>
+returns an Array of dispensary objects.
+
+##### `options` (optional) - [Object]
+* `sort` - [String] Possible values:
+	* `createdAt` - Oldest records
+	* `-createdAt` - Newest records
+	* `updatedAt` - Oldest updated records
+	* `-updatedAt` - Newest updated records
+	* `name` - Alphabetically stating with numeric strains. 0-9, A-Z.
+	* `-name` - Alphabetically starting with Z and working back through numeric strains. Z-A, 9-0.
+* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want. Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
+
+```javascript
+Dispensary
+  .all(options)
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='dispensary-dispensary'>Dispensary.dispensary(state, city, slug)</h3>
+returns a individual dispensary object based on the state, city, and slug.
+
+##### `state` (required) - [String] Two character state for the dispensary.
+##### `city` (required) - [String] City the dispensary is in (kebab-case).
+##### `slug` (required) - [String] Slug for the name of the dispensary.
+
+
+```javascript
+Dispensary
+  .dispensary('ca', 'san-francisco', 'grass-roots')
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='dispensary-strains'>Dispensary.strains(state, city, slug)</h3>
+returns an Array of strains for a given dispensary
+
+##### `state` (required) - [String] Two character state for the dispensary.
+##### `city` (required) - [String] City the dispensary is in (kebab-case).
+##### `slug` (required) - [String] Slug for the name of the dispensary.
+##### `options` (optional) - [Object]
+* `sort` - [String] Possible values:
+	* `createdAt` - Oldest records
+	* `-createdAt` - Newest records
+	* `updatedAt` - Oldest updated records
+	* `-updatedAt` - Newest updated records
+* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want. Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
+
+
+```javascript
+Dispensary
+  .strains('ca', 'san-francisco', 'grass-roots', options)
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='dispensary-extracts'>Dispensary.extracts(state, city, slug)</h3>
+returns an Array of extracts for a given dispensary
+
+##### `state` (required) - [String] Two character state for the dispensary.
+##### `city` (required) - [String] City the dispensary is in (kebab-case).
+##### `slug` (required) - [String] Slug for the name of the dispensary.
+##### `options` (optional) - [Object]
+* `sort` - [String] Possible values:
+	* `createdAt` - Oldest records
+	* `-createdAt` - Newest records
+	* `updatedAt` - Oldest updated records
+	* `-updatedAt` - Newest updated records
+* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want. Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
+
+
+```javascript
+Dispensary
+  .extracts('ca', 'san-francisco', 'grass-roots', options)
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='dispensary-edibles'>Dispensary.edibles(state, city, slug)</h3>
+returns an Array of edibles for a given dispensary
+
+##### `state` (required) - [String] Two character state for the dispensary.
+##### `city` (required) - [String] City the dispensary is in (kebab-case).
+##### `slug` (required) - [String] Slug for the name of the dispensary.
+##### `options` (optional) - [Object]
+* `sort` - [String] Possible values:
+	* `createdAt` - Oldest records
+	* `-createdAt` - Newest records
+	* `updatedAt` - Oldest updated records
+	* `-updatedAt` - Newest updated records
+* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want. Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
+
+
+```javascript
+Dispensary
+  .edibles('ca', 'san-francisco', 'grass-roots', options)
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+```
+
+<h3 id='dispensary-products'>Dispensary.products(state, city, slug)</h3>
+returns an Array of products for a given dispensary
+
+##### `state` (required) - [String] Two character state for the dispensary.
+##### `city` (required) - [String] City the dispensary is in (kebab-case).
+##### `slug` (required) - [String] Slug for the name of the dispensary.
+##### `options` (optional) - [Object]
+* `sort` - [String] Possible values:
+	* `createdAt` - Oldest records
+	* `-createdAt` - Newest records
+	* `updatedAt` - Oldest updated records
+	* `-updatedAt` - Newest updated records
+* `page` - [Number] By default, Cannabis Reports will return 10 records at a time for this API call. You can use the `page` argument to fetch the page of results you want. Check out the [pagination](https://developers.cannabisreports.com/docs/pagination) section of the documentation for further information.
+
+
+```javascript
+Dispensary
+  .products('ca', 'san-francisco', 'grass-roots', options)
   .then(data => console.log(data))
   .catch(err => console.log(err))
 ```
