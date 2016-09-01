@@ -21,7 +21,7 @@
     "start": "babel-node ./src/index.js",
     "lint": "eslint --ext .js ./",
     "lint:fix": "npm run lint -- --fix",
-    "build": "npm run lint && npm run test && babel src -d lib"
+    "build": "npm run lint && babel src -d lib"
   },
   "babel": {
     "presets": [
