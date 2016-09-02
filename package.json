@@ -1,6 +1,6 @@
 {
   "name": "cannabis-reports",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "SDK for Cannabis Reports API",
   "keyword": [
     ""
@@ -51,7 +51,7 @@
     "pretty-error": "^2.0.0"
   },
   "dependencies": {
-    "q": "^1.4.1",
-    "request": "^2.74.0"
+    "axios": "^0.14.0",
+    "q": "^1.4.1"
   }
 }

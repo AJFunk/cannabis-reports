@@ -1,4 +1,4 @@
-import request from 'request';
+import axios from 'axios';
 import Q from 'q';
 
 // TODO
@@ -14,16 +14,9 @@ export default function dispensary(apiKey: string, baseUrl: string): object {
       if (options.sort) url = `${url}sort=${options.sort}&`;
       if (options.page) url = `${url}page=${options.page}`;
     }
-    request(
-      url,
-      (err: string, response: string, body: string): object => {
-        const result = JSON.parse(body);
-        if (err || !result.data) {
-          return cb(err || result.status_code);
-        }
-        return cb(null, result.data);
-      }
-    );
+    axios.get(url)
+    .then((response: object): object => cb(null, response.data))
+    .catch((err: object): object => cb(err));
   }
 
   return {
