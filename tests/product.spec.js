@@ -18,18 +18,18 @@ describe('Product.all()', () => {
 
 describe('Product.type()', () => {
   it('returns array', () =>
-    Product.type('baked goods').then((data) => expect(data).to.be.instanceof(Array))
+    Product.type('Bath').then((data) => expect(data).to.be.instanceof(Array))
   );
   it('returns array sorted by createdAt', () =>
-    Product.type('cAndy', { sort: 'createdAt' })
+    Product.type('Topical', { sort: 'createdAt' })
     .then((data) => expect(data).to.be.instanceof(Array))
   );
   it('returns array sorted by createdAt', () =>
-    Product.type('Ice Cream', { sort: '-createdAt', page: 5 })
+    Product.type('Skin Care', { sort: '-createdAt', page: 5 })
     .then((data) => expect(data).to.be.instanceof(Array))
   );
   it('returns array', () =>
-    Product.type('CHOCOLATE', { page: 3 }).then((data) => expect(data).to.be.instanceof(Array))
+    Product.type('Pre-Roll', { page: 3 }).then((data) => expect(data).to.be.instanceof(Array))
   );
   it('returns error message', () =>
     Product.type('not a real type').catch((err) => expect(err).to.be.an('error'))

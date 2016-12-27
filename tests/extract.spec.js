@@ -18,18 +18,18 @@ describe('Extract.all()', () => {
 
 describe('Extract.type()', () => {
   it('returns array', () =>
-    Extract.type('extracts').then((data) => expect(data).to.be.instanceof(Array))
+    Extract.type('Kief').then((data) => expect(data).to.be.instanceof(Array))
   );
   it('returns array sorted by createdAt', () =>
-    Extract.type('sEeds', { sort: 'createdAt' })
+    Extract.type('Hash', { sort: 'createdAt' })
     .then((data) => expect(data).to.be.instanceof(Array))
   );
   it('returns array sorted by createdAt', () =>
-    Extract.type('clONes', { sort: '-createdAt', page: 5 })
+    Extract.type('Oil', { sort: '-createdAt', page: 5 })
     .then((data) => expect(data).to.be.instanceof(Array))
   );
   it('returns array', () =>
-    Extract.type('Shake', { page: 3 }).then((data) => expect(data).to.be.instanceof(Array))
+    Extract.type('Wax', { page: 3 }).then((data) => expect(data).to.be.instanceof(Array))
   );
   it('returns error message', () =>
     Extract.type('not a real type').catch((err) => expect(err).to.be.an('error'))
@@ -38,7 +38,7 @@ describe('Extract.type()', () => {
 
 describe('Extract.extract()', () => {
   it('returns object', () =>
-    Extract.extract('3CV7E33XLHTJT2XZ4GMD00000')
+    Extract.extract('QLG39RN2AFPMR6WLTPLW00000')
     .then((data) => expect(typeof(data)).to.equal('object'))
   );
   it('returns error message', () =>
@@ -60,7 +60,7 @@ describe('Extract.extract()', () => {
 
 describe('Extract.user()', () => {
   it('returns object', () =>
-    Extract.user('3CV7E33XLHTJT2XZ4GMD00000')
+    Extract.user('QLG39RN2AFPMR6WLTPLW00000')
     .then((data) => expect(typeof(data)).to.equal('object'))
   );
   it('returns error message', () =>
@@ -82,11 +82,11 @@ describe('Extract.user()', () => {
 
 describe('Extract.reviews()', () => {
   it('returns array', () =>
-    Extract.reviews('3CV7E33XLHTJT2XZ4GMD00000')
+    Extract.reviews('QLG39RN2AFPMR6WLTPLW00000')
     .then((data) => expect(data).to.be.instanceof(Array))
   );
   it('returns array', () =>
-    Extract.reviews('3CV7E33XLHTJT2XZ4GMD00000', { page: 2 })
+    Extract.reviews('QLG39RN2AFPMR6WLTPLW00000', { page: 2 })
     .then((data) => expect(data).to.be.instanceof(Array))
   );
   it('returns error message', () =>
@@ -108,7 +108,7 @@ describe('Extract.reviews()', () => {
 
 describe('Extract.effectsFlavors()', () => {
   it('returns object', () =>
-    Extract.effectsFlavors('3CV7E33XLHTJT2XZ4GMD00000')
+    Extract.effectsFlavors('QLG39RN2AFPMR6WLTPLW00000')
     .then((data) => expect(typeof(data)).to.equal('object'))
   );
   it('returns error message', () =>
@@ -135,7 +135,7 @@ describe('Extract.effectsFlavors()', () => {
 
 describe('Extract.producer()', () => {
   it('returns object', () =>
-    Extract.producer('3CV7E33XLHTJT2XZ4GMD00000')
+    Extract.producer('QLG39RN2AFPMR6WLTPLW00000')
     .then((data) => expect(typeof(data)).to.equal('object'))
   );
   it('returns error message', () =>
@@ -157,7 +157,7 @@ describe('Extract.producer()', () => {
 
 describe('Extract.strain()', () => {
   it('returns object', () =>
-    Extract.strain('3CV7E33XLHTJT2XZ4GMD00000')
+    Extract.strain('QLG39RN2AFPMR6WLTPLW00000')
     .then((data) => expect(typeof(data)).to.equal('object'))
   );
   it('returns error message', () =>
@@ -179,19 +179,19 @@ describe('Extract.strain()', () => {
 
 describe('Extract.availability()', () => {
   it('returns array', () =>
-    Extract.availability('3CV7E33XLHTJT2XZ4GMD00000', 37.7749295, -122.4194155)
+    Extract.availability('QLG39RN2AFPMR6WLTPLW00000', 37.7749295, -122.4194155)
     .then((data) => expect(data).to.be.instanceof(Array))
   );
   it('returns array', () =>
-    Extract.availability('3CV7E33XLHTJT2XZ4GMD00000', '37.7749295', '-122.4194155')
+    Extract.availability('QLG39RN2AFPMR6WLTPLW00000', '37.7749295', '-122.4194155')
     .then((data) => expect(data).to.be.instanceof(Array))
   );
   it('returns array', () =>
-    Extract.availability('3CV7E33XLHTJT2XZ4GMD00000', 37.7749295, -122.4194155, { page: 2 })
+    Extract.availability('QLG39RN2AFPMR6WLTPLW00000', 37.7749295, -122.4194155, { page: 2 })
     .then((data) => expect(data).to.be.instanceof(Array))
   );
   it('returns array', () =>
-    Extract.availability('3CV7E33XLHTJT2XZ4GMD00000', '37.7749295', '-122.4194155', { page: 2 })
+    Extract.availability('QLG39RN2AFPMR6WLTPLW00000', '37.7749295', '-122.4194155', { page: 2 })
     .then((data) => expect(data).to.be.instanceof(Array))
   );
   it('returns error message', () =>
