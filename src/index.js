@@ -22,7 +22,20 @@ const Dispensary = dispensary();
 const SeedCompany = seedCompany();
 
 const CannabisConfig = {
-  key: (key: string) => axios.defaults.headers.common['X-API-Key'] = key
-}
+  key: (key: string): undefined => {
+    axios.defaults.headers.common['X-API-Key'] = key;
+    return;
+  },
+};
 
-export { Strain, Flower, Extract, Edible, Product, Producer, SeedCompany, Dispensary, CannabisConfig };
+export {
+  Strain,
+  Flower,
+  Extract,
+  Edible,
+  Product,
+  Producer,
+  SeedCompany,
+  Dispensary,
+  CannabisConfig,
+};
