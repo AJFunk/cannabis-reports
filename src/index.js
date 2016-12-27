@@ -1,3 +1,8 @@
+import axios from 'axios';
+
+axios.defaults.headers.common['X-API-Key'] = process.env.CANNABIS_REPORTS_API_KEY || '';
+axios.defaults.baseURL = 'https://www.cannabisreports.com/api/v1.0/';
+
 import strain from './strain.js';
 import flower from './flower.js';
 import extract from './extract.js';
@@ -7,16 +12,17 @@ import producer from './producer.js';
 import dispensary from './dispensary.js';
 import seedCompany from './seed-company.js';
 
-const apiKey = process.env.CANNABIS_REPORTS_API_KEY;
-const baseUrl = 'https://www.cannabisreports.com/api/v1.0/';
+const Strain = strain();
+const Flower = flower();
+const Extract = extract();
+const Edible = edible();
+const Product = product();
+const Producer = producer();
+const Dispensary = dispensary();
+const SeedCompany = seedCompany();
 
-const Strain = strain(apiKey, baseUrl);
-const Flower = flower(apiKey, baseUrl);
-const Extract = extract(apiKey, baseUrl);
-const Edible = edible(apiKey, baseUrl);
-const Product = product(apiKey, baseUrl);
-const Producer = producer(apiKey, baseUrl);
-const Dispensary = dispensary(apiKey, baseUrl);
-const SeedCompany = seedCompany(apiKey, baseUrl);
+const CannabisConfig = {
+  key: (key: string) => axios.defaults.headers.common['X-API-Key'] = key
+}
 
-export { Strain, Flower, Extract, Edible, Product, Producer, SeedCompany, Dispensary };
+export { Strain, Flower, Extract, Edible, Product, Producer, SeedCompany, Dispensary, CannabisConfig };

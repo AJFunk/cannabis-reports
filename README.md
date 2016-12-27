@@ -18,6 +18,11 @@ Only import the modules your need. For example, if you only need the `Strain` an
 ```javascript
 import { Strain, Extract } from 'cannabis-reports';
 ```
+To set your API Key, set the environment variable `CANNABIS_REPORTS_API_KEY`. Alternatively, you can set the configuration manually
+```javascript
+import { CannabisConfig } from 'cannabis-reports';
+CannabisConfig.key('<your-api-key>')
+```
 
 ## Strains
 * [Strain.all()](#strain-all)

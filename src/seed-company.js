@@ -1,15 +1,15 @@
 import axios from 'axios';
 import Q from 'q';
 
-export default function seedCompany(apiKey: string, baseUrl: string): object {
+export default function seedCompany(): object {
   function sendRequest(endpoint: string, options: object = {}, cb: object): undefined {
-    let url = `${baseUrl}seed-companies${(endpoint ? `/${endpoint}?` : '?')}`;
+    let url = `/seed-companies${(endpoint ? `/${endpoint}?` : '?')}`;
     if (options) {
       if (options.sort) url = `${url}sort=${options.sort}&`;
       if (options.page) url = `${url}page=${options.page}`;
     }
     axios.get(url)
-    .then((response: object): object => cb(null, response.data))
+    .then((response: object): object => cb(null, response.data.data))
     .catch((err: object): object => cb(err));
   }
 

@@ -1,15 +1,15 @@
 import axios from 'axios';
 import Q from 'q';
 
-export default function edible(apiKey: string, baseUrl: string): object {
+export default function edible(): object {
   function sendRequest(endpoint: string, options: object = {}, cb: object): undefined {
-    let url = `${baseUrl}edibles${(endpoint ? `/${endpoint}?` : '?')}`;
+    let url = `/edibles${(endpoint ? `/${endpoint}?` : '?')}`;
     if (options) {
       if (options.sort) url = `${url}sort=${options.sort}&`;
       if (options.page) url = `${url}page=${options.page}`;
     }
     axios.get(url)
-    .then((response: object): object => cb(null, response.data))
+    .then((response: object): object => cb(null, response.data.data))
     .catch((err: object): object => cb(err));
   }
 
@@ -135,7 +135,7 @@ export default function edible(apiKey: string, baseUrl: string): object {
       if (!(typeof(lng) === 'string' || typeof(lng) === 'number')) {
         deferred.reject(new Error('Longitude must be a string or number.'));
       }
-      const radius = options.radius ? `/${options.radius}` : '';
+      const radius = (options && options.radius) ? `/${options.radius}` : '';
       sendRequest(`${ucpc}/availability/geo/${lat}/${lng}${radius}`,
         options,
         (err: string, data: object): undefined => {

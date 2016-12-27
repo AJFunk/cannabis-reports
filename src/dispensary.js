@@ -7,15 +7,15 @@ import Q from 'q';
 // For example, "California" would be converted to "CA"
 // Also validate city and slugs
 
-export default function dispensary(apiKey: string, baseUrl: string): object {
+export default function dispensary(): object {
   function sendRequest(endpoint: string, options: object = {}, cb: object): undefined {
-    let url = `${baseUrl}dispensaries${(endpoint ? `/${endpoint}?` : '?')}`;
+    let url = `/dispensaries${(endpoint ? `/${endpoint}?` : '?')}`;
     if (options) {
       if (options.sort) url = `${url}sort=${options.sort}&`;
       if (options.page) url = `${url}page=${options.page}`;
     }
     axios.get(url)
-    .then((response: object): object => cb(null, response.data))
+    .then((response: object): object => cb(null, response.data.data))
     .catch((err: object): object => cb(err));
   }
 
