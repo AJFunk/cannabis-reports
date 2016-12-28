@@ -42,18 +42,6 @@ describe('Product.product()', () => {
     .then((data) => expect(typeof(data)).to.equal('object'))
   );
   it('returns error message', () =>
-    Product.product('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Product.product('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Product.product('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Product.product('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
     Product.product('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
 });
@@ -62,18 +50,6 @@ describe('Product.user()', () => {
   it('returns object', () =>
     Product.user('9XVU7NK3PEGLAJ372X4F00000')
     .then((data) => expect(typeof(data)).to.equal('object'))
-  );
-  it('returns error message', () =>
-    Product.user('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Product.user('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Product.user('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Product.user('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
     Product.user('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
@@ -90,18 +66,6 @@ describe('Product.reviews()', () => {
     .then((data) => expect(data).to.be.instanceof(Array))
   );
   it('returns error message', () =>
-    Product.reviews('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Product.reviews('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Product.reviews('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Product.reviews('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
     Product.reviews('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
 });
@@ -110,22 +74,6 @@ describe('Product.effectsFlavors()', () => {
   it('returns object', () =>
     Product.effectsFlavors('9XVU7NK3PEGLAJ372X4F00000')
     .then((data) => expect(typeof(data)).to.equal('object'))
-  );
-  it('returns error message', () =>
-    Product.effectsFlavors('VUJCJ4TYMG00000000000000')
-    .catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Product.effectsFlavors('VUJCJ4TYMG00&000000000000')
-    .catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Product.effectsFlavors('VUJCJ4TYMG00 000000000000')
-    .catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Product.effectsFlavors('VUJCJ4TYMG00_000000&00000')
-    .catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
     Product.effectsFlavors('VUJCJ4TYMG00!000000&00000')
@@ -139,18 +87,6 @@ describe('Product.producer()', () => {
     .then((data) => expect(typeof(data)).to.equal('object'))
   );
   it('returns error message', () =>
-    Product.producer('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Product.producer('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Product.producer('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Product.producer('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
     Product.producer('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
 });
@@ -159,18 +95,6 @@ describe('Product.strain()', () => {
   it('returns object', () =>
     Product.strain('9XVU7NK3PEGLAJ372X4F00000')
     .then((data) => expect(typeof(data)).to.equal('object'))
-  );
-  it('returns error message', () =>
-    Product.strain('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Product.strain('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Product.strain('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Product.strain('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
     Product.strain('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
@@ -208,18 +132,6 @@ describe('Product.availability()', () => {
   it('returns error message', () =>
     Product.availability('VUJCJ4TYMG00000000000000', 37.7749295)
     .catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Product.availability('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Product.availability('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Product.availability('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Product.availability('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
     Product.availability('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))

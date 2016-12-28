@@ -40,18 +40,6 @@ describe('Flower.flower()', () => {
     .then((data) => expect(typeof(data)).to.equal('object'))
   );
   it('returns error message', () =>
-    Flower.flower('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Flower.flower('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Flower.flower('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Flower.flower('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
     Flower.flower('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
 });
@@ -60,18 +48,6 @@ describe('Flower.user()', () => {
   it('returns object', () =>
     Flower.user('AHZ7H4N6467FVUDY3DAY00000')
     .then((data) => expect(typeof(data)).to.equal('object'))
-  );
-  it('returns error message', () =>
-    Flower.user('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Flower.user('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Flower.user('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Flower.user('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
     Flower.user('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
@@ -88,18 +64,6 @@ describe('Flower.reviews()', () => {
     .then((data) => expect(data).to.be.instanceof(Array))
   );
   it('returns error message', () =>
-    Flower.reviews('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Flower.reviews('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Flower.reviews('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Flower.reviews('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
     Flower.reviews('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
 });
@@ -108,22 +72,6 @@ describe('Flower.effectsFlavors()', () => {
   it('returns object', () =>
     Flower.effectsFlavors('AHZ7H4N6467FVUDY3DAY00000')
     .then((data) => expect(typeof(data)).to.equal('object'))
-  );
-  it('returns error message', () =>
-    Flower.effectsFlavors('VUJCJ4TYMG00000000000000')
-    .catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Flower.effectsFlavors('VUJCJ4TYMG00&000000000000')
-    .catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Flower.effectsFlavors('VUJCJ4TYMG00 000000000000')
-    .catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Flower.effectsFlavors('VUJCJ4TYMG00_000000&00000')
-    .catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
     Flower.effectsFlavors('VUJCJ4TYMG00!000000&00000')
@@ -137,18 +85,6 @@ describe('Flower.producer()', () => {
     .then((data) => expect(typeof(data)).to.equal('object'))
   );
   it('returns error message', () =>
-    Flower.producer('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Flower.producer('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Flower.producer('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Flower.producer('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
     Flower.producer('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
 });
@@ -157,18 +93,6 @@ describe('Flower.strain()', () => {
   it('returns object', () =>
     Flower.strain('AHZ7H4N6467FVUDY3DAY00000')
     .then((data) => expect(typeof(data)).to.equal('object'))
-  );
-  it('returns error message', () =>
-    Flower.strain('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Flower.strain('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Flower.strain('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Flower.strain('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
     Flower.strain('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
@@ -206,18 +130,6 @@ describe('Flower.availability()', () => {
   it('returns error message', () =>
     Flower.availability('VUJCJ4TYMG00000000000000', 37.7749295)
     .catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Flower.availability('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Flower.availability('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Flower.availability('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Flower.availability('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
     Flower.availability('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))

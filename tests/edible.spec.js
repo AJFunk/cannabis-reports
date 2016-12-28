@@ -40,18 +40,6 @@ describe('Edible.edible()', () => {
     .then((data) => expect(typeof(data)).to.equal('object'))
   );
   it('returns error message', () =>
-    Edible.edible('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Edible.edible('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Edible.edible('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Edible.edible('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
     Edible.edible('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
 });
@@ -60,18 +48,6 @@ describe('Edible.user()', () => {
   it('returns object', () =>
     Edible.user('4KXM32V9YFC3G2EUNWP400000')
     .then((data) => expect(typeof(data)).to.equal('object'))
-  );
-  it('returns error message', () =>
-    Edible.user('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Edible.user('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Edible.user('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Edible.user('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
     Edible.user('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
@@ -88,18 +64,6 @@ describe('Edible.reviews()', () => {
     .then((data) => expect(data).to.be.instanceof(Array))
   );
   it('returns error message', () =>
-    Edible.reviews('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Edible.reviews('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Edible.reviews('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Edible.reviews('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
     Edible.reviews('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
 });
@@ -108,22 +72,6 @@ describe('Edible.effectsFlavors()', () => {
   it('returns object', () =>
     Edible.effectsFlavors('4KXM32V9YFC3G2EUNWP400000')
     .then((data) => expect(typeof(data)).to.equal('object'))
-  );
-  it('returns error message', () =>
-    Edible.effectsFlavors('VUJCJ4TYMG00000000000000')
-    .catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Edible.effectsFlavors('VUJCJ4TYMG00&000000000000')
-    .catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Edible.effectsFlavors('VUJCJ4TYMG00 000000000000')
-    .catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Edible.effectsFlavors('VUJCJ4TYMG00_000000&00000')
-    .catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
     Edible.effectsFlavors('VUJCJ4TYMG00!000000&00000')
@@ -137,18 +85,6 @@ describe('Edible.producer()', () => {
     .then((data) => expect(typeof(data)).to.equal('object'))
   );
   it('returns error message', () =>
-    Edible.producer('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Edible.producer('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Edible.producer('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Edible.producer('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
     Edible.producer('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
 });
@@ -157,18 +93,6 @@ describe('Edible.strain()', () => {
   it('returns object', () =>
     Edible.strain('4KXM32V9YFC3G2EUNWP400000')
     .then((data) => expect(typeof(data)).to.equal('object'))
-  );
-  it('returns error message', () =>
-    Edible.strain('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Edible.strain('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Edible.strain('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Edible.strain('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
     Edible.strain('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
@@ -199,25 +123,6 @@ describe('Edible.availability()', () => {
   it('returns error message', () =>
     Edible.availability('VUJCJ4TYMG00000000000000', 37.7749295, [-122.4194155])
     .catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Edible.availability('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Edible.availability('VUJCJ4TYMG00000000000000', 37.7749295)
-    .catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Edible.availability('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Edible.availability('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Edible.availability('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Edible.availability('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
     Edible.availability('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))

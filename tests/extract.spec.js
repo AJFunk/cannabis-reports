@@ -42,18 +42,6 @@ describe('Extract.extract()', () => {
     .then((data) => expect(typeof(data)).to.equal('object'))
   );
   it('returns error message', () =>
-    Extract.extract('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Extract.extract('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Extract.extract('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Extract.extract('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
     Extract.extract('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
 });
@@ -62,18 +50,6 @@ describe('Extract.user()', () => {
   it('returns object', () =>
     Extract.user('QLG39RN2AFPMR6WLTPLW00000')
     .then((data) => expect(typeof(data)).to.equal('object'))
-  );
-  it('returns error message', () =>
-    Extract.user('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Extract.user('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Extract.user('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Extract.user('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
     Extract.user('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
@@ -90,18 +66,6 @@ describe('Extract.reviews()', () => {
     .then((data) => expect(data).to.be.instanceof(Array))
   );
   it('returns error message', () =>
-    Extract.reviews('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Extract.reviews('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Extract.reviews('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Extract.reviews('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
     Extract.reviews('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
 });
@@ -110,22 +74,6 @@ describe('Extract.effectsFlavors()', () => {
   it('returns object', () =>
     Extract.effectsFlavors('QLG39RN2AFPMR6WLTPLW00000')
     .then((data) => expect(typeof(data)).to.equal('object'))
-  );
-  it('returns error message', () =>
-    Extract.effectsFlavors('VUJCJ4TYMG00000000000000')
-    .catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Extract.effectsFlavors('VUJCJ4TYMG00&000000000000')
-    .catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Extract.effectsFlavors('VUJCJ4TYMG00 000000000000')
-    .catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Extract.effectsFlavors('VUJCJ4TYMG00_000000&00000')
-    .catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
     Extract.effectsFlavors('VUJCJ4TYMG00!000000&00000')
@@ -139,18 +87,6 @@ describe('Extract.producer()', () => {
     .then((data) => expect(typeof(data)).to.equal('object'))
   );
   it('returns error message', () =>
-    Extract.producer('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Extract.producer('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Extract.producer('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Extract.producer('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
     Extract.producer('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
 });
@@ -159,18 +95,6 @@ describe('Extract.strain()', () => {
   it('returns object', () =>
     Extract.strain('QLG39RN2AFPMR6WLTPLW00000')
     .then((data) => expect(typeof(data)).to.equal('object'))
-  );
-  it('returns error message', () =>
-    Extract.strain('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Extract.strain('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Extract.strain('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Extract.strain('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
     Extract.strain('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
@@ -208,18 +132,6 @@ describe('Extract.availability()', () => {
   it('returns error message', () =>
     Extract.availability('VUJCJ4TYMG00000000000000', 37.7749295)
     .catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Extract.availability('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Extract.availability('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Extract.availability('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Extract.availability('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
     Extract.availability('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))

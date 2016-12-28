@@ -22,18 +22,6 @@ describe('Producer.producer()', () => {
     .then((data) => expect(typeof(data)).to.equal('object'))
   );
   it('returns error message', () =>
-    Producer.producer('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Producer.producer('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Producer.producer('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Producer.producer('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
     Producer.producer('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
 });
@@ -46,18 +34,6 @@ describe('Producer.extracts()', () => {
   it('returns array', () =>
     Producer.extracts('0000000000L6M7E0000000000', { page: 2 })
     .then((data) => expect(data).to.be.instanceof(Array))
-  );
-  it('returns error message', () =>
-    Producer.extracts('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Producer.extracts('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Producer.extracts('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Producer.extracts('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
     Producer.extracts('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
@@ -74,18 +50,6 @@ describe('Producer.edibles()', () => {
     .then((data) => expect(data).to.be.instanceof(Array))
   );
   it('returns error message', () =>
-    Producer.edibles('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Producer.edibles('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Producer.edibles('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Producer.edibles('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
     Producer.edibles('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
 });
@@ -98,18 +62,6 @@ describe('Producer.products()', () => {
   it('returns array', () =>
     Producer.products('0000000000L6M7E0000000000', { page: 2 })
     .then((data) => expect(data).to.be.instanceof(Array))
-  );
-  it('returns error message', () =>
-    Producer.products('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Producer.products('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Producer.products('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Producer.products('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
     Producer.products('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
@@ -147,18 +99,6 @@ describe('Producer.availability()', () => {
   it('returns error message', () =>
     Producer.availability('VUJCJ4TYMG00000000000000', 37.7749295)
     .catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Producer.availability('VUJCJ4TYMG00000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Producer.availability('VUJCJ4TYMG00&000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Producer.availability('VUJCJ4TYMG00 000000000000').catch((err) => expect(err).to.be.an('error'))
-  );
-  it('returns error message', () =>
-    Producer.availability('VUJCJ4TYMG00_000000&00000').catch((err) => expect(err).to.be.an('error'))
   );
   it('returns error message', () =>
     Producer.availability('VUJCJ4TYMG00!000000&00000').catch((err) => expect(err).to.be.an('error'))
