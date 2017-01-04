@@ -21,7 +21,7 @@ export default function producer(): object {
 
   return {
 
-    all(options: object): undefined {
+    all(options: object = {}): undefined {
       const deferred = Q.defer();
       sendRequest(null, options, (err: string, data: object): undefined => {
         if (err) return deferred.reject(err);
@@ -40,7 +40,7 @@ export default function producer(): object {
       return deferred.promise;
     },
 
-    extracts(ucpc: string, options: object): undefined {
+    extracts(ucpc: string, options: object = {}): undefined {
       const deferred = Q.defer();
       if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
       sendRequest(`${ucpc}/extracts`, options, (err: string, data: object): undefined => {
@@ -50,7 +50,7 @@ export default function producer(): object {
       return deferred.promise;
     },
 
-    edibles(ucpc: string, options: object): undefined {
+    edibles(ucpc: string, options: object = {}): undefined {
       const deferred = Q.defer();
       if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
       sendRequest(`${ucpc}/edibles`, options, (err: string, data: object): undefined => {
@@ -60,7 +60,7 @@ export default function producer(): object {
       return deferred.promise;
     },
 
-    products(ucpc: string, options: object): undefined {
+    products(ucpc: string, options: object = {}): undefined {
       const deferred = Q.defer();
       if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
       sendRequest(`${ucpc}/products`, options, (err: string, data: object): undefined => {
@@ -70,7 +70,7 @@ export default function producer(): object {
       return deferred.promise;
     },
 
-    availability(ucpc: string, lat: string, lng: string, options: object): undefined {
+    availability(ucpc: string, lat: string, lng: string, options: object = {}): undefined {
       const deferred = Q.defer();
       if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
       if (!lat) deferred.reject(new Error('Latitude is required'));

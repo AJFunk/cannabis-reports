@@ -21,7 +21,7 @@ export default function dispensary(): object {
 
   return {
 
-    all(options: object): undefined {
+    all(options: object = {}): undefined {
       const deferred = Q.defer();
       sendRequest(null, options, (err: string, data: object): undefined => {
         if (err) return deferred.reject(err);
@@ -42,7 +42,7 @@ export default function dispensary(): object {
       return deferred.promise;
     },
 
-    strains(state: string, city: string, slug: string, options: object): undefined {
+    strains(state: string, city: string, slug: string, options: object = {}): undefined {
       const deferred = Q.defer();
       if (!state) deferred.reject(new Error('State is required.'));
       if (!city) deferred.reject(new Error('City is required.'));
@@ -57,7 +57,7 @@ export default function dispensary(): object {
       return deferred.promise;
     },
 
-    extracts(state: string, city: string, slug: string, options: object): undefined {
+    extracts(state: string, city: string, slug: string, options: object = {}): undefined {
       const deferred = Q.defer();
       if (!state) deferred.reject(new Error('State is required.'));
       if (!city) deferred.reject(new Error('City is required.'));
@@ -72,7 +72,7 @@ export default function dispensary(): object {
       return deferred.promise;
     },
 
-    edibles(state: string, city: string, slug: string, options: object): undefined {
+    edibles(state: string, city: string, slug: string, options: object = {}): undefined {
       const deferred = Q.defer();
       if (!state) deferred.reject(new Error('State is required.'));
       if (!city) deferred.reject(new Error('City is required.'));
@@ -87,7 +87,7 @@ export default function dispensary(): object {
       return deferred.promise;
     },
 
-    products(state: string, city: string, slug: string, options: object): undefined {
+    products(state: string, city: string, slug: string, options: object = {}): undefined {
       const deferred = Q.defer();
       if (!state) deferred.reject(new Error('State is required.'));
       if (!city) deferred.reject(new Error('City is required.'));

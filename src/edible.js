@@ -43,7 +43,7 @@ export default function edible(): object {
 
   return {
 
-    all(options: object): undefined {
+    all(options: object = {}): undefined {
       const deferred = Q.defer();
       sendRequest(null, options, (err: string, data: object): undefined => {
         if (err) return deferred.reject(err);
@@ -52,7 +52,7 @@ export default function edible(): object {
       return deferred.promise;
     },
 
-    type(edibleType: string, options: object): undefined {
+    type(edibleType: string, options: object = {}): undefined {
       const deferred = Q.defer();
       if (!validateEdibleType(edibleType.toLowerCase())) {
         deferred.reject(new Error('Invalid Edible Type.'));
@@ -84,7 +84,7 @@ export default function edible(): object {
       return deferred.promise;
     },
 
-    reviews(ucpc: string, options: object): undefined {
+    reviews(ucpc: string, options: object = {}): undefined {
       const deferred = Q.defer();
       if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
       sendRequest(`${ucpc}/reviews`, options, (err: string, data: object): undefined => {
@@ -124,7 +124,7 @@ export default function edible(): object {
       return deferred.promise;
     },
 
-    availability(ucpc: string, lat: string, lng: string, options: object): undefined {
+    availability(ucpc: string, lat: string, lng: string, options: object = {}): undefined {
       const deferred = Q.defer();
       if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
       if (!lat) deferred.reject(new Error('Latitude is required'));

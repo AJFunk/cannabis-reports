@@ -39,7 +39,7 @@ export default function extract(): object {
 
   return {
 
-    all(options: object): undefined {
+    all(options: object = {}): undefined {
       const deferred = Q.defer();
       sendRequest(null, options, (err: string, data: object): undefined => {
         if (err) return deferred.reject(err);
@@ -48,7 +48,7 @@ export default function extract(): object {
       return deferred.promise;
     },
 
-    type(extractType: string, options: object): undefined {
+    type(extractType: string, options: object = {}): undefined {
       const deferred = Q.defer();
       if (!validateExtractType(extractType.toLowerCase())) {
         deferred.reject(new Error('Invalid Extract Type.'));
@@ -80,7 +80,7 @@ export default function extract(): object {
       return deferred.promise;
     },
 
-    reviews(ucpc: string, options: object): undefined {
+    reviews(ucpc: string, options: object = {}): undefined {
       const deferred = Q.defer();
       if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
       sendRequest(`${ucpc}/reviews`, options, (err: string, data: object): undefined => {
@@ -120,7 +120,7 @@ export default function extract(): object {
       return deferred.promise;
     },
 
-    availability(ucpc: string, lat: string, lng: string, options: object): undefined {
+    availability(ucpc: string, lat: string, lng: string, options: object = {}): undefined {
       const deferred = Q.defer();
       if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
       if (!lat) deferred.reject(new Error('Latitude is required'));

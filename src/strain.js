@@ -21,7 +21,7 @@ export default function strain(): object {
 
   return {
 
-    all(options: object): undefined {
+    all(options: object = {}): undefined {
       const deferred = Q.defer();
       sendRequest(null, options, (err: string, data: object): undefined => {
         if (err) return deferred.reject(err);
@@ -30,7 +30,7 @@ export default function strain(): object {
       return deferred.promise;
     },
 
-    search(query: string, options: object): undefined {
+    search(query: string, options: object = {}): undefined {
       const deferred = Q.defer();
       if (!query || typeof(query) !== 'string') {
         deferred.reject(new Error('A string query is required.'));
@@ -62,7 +62,7 @@ export default function strain(): object {
       return deferred.promise;
     },
 
-    reviews(ucpc: string, options: object): undefined {
+    reviews(ucpc: string, options: object = {}): undefined {
       const deferred = Q.defer();
       if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
       sendRequest(`${ucpc}/reviews`, options, (err: string, data: object): undefined => {
@@ -102,7 +102,7 @@ export default function strain(): object {
       return deferred.promise;
     },
 
-    children(ucpc: string, options: object): undefined {
+    children(ucpc: string, options: object = {}): undefined {
       const deferred = Q.defer();
       if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
       sendRequest(`${ucpc}/children`, options, (err: string, data: object): undefined => {
@@ -112,7 +112,7 @@ export default function strain(): object {
       return deferred.promise;
     },
 
-    availability(ucpc: string, lat: string, lng: string, options: object): undefined {
+    availability(ucpc: string, lat: string, lng: string, options: object = {}): undefined {
       const deferred = Q.defer();
       if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
       if (!lat) deferred.reject(new Error('Latitude is required'));

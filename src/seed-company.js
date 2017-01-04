@@ -31,7 +31,7 @@ export default function seedCompany(): object {
       return deferred.promise;
     },
 
-    strains(ucpc: string, options: object): undefined {
+    strains(ucpc: string, options: object = {}): undefined {
       const deferred = Q.defer();
       if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
       sendRequest(`${ucpc}/strains`, options, (err: string, data: object): undefined => {
@@ -41,7 +41,7 @@ export default function seedCompany(): object {
       return deferred.promise;
     },
 
-    reviews(ucpc: string, options: object): undefined {
+    reviews(ucpc: string, options: object = {}): undefined {
       const deferred = Q.defer();
       if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
       sendRequest(`${ucpc}/reviews`, options, (err: string, data: object): undefined => {
