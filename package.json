@@ -1,11 +1,11 @@
 {
   "name": "cannabis-reports",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "SDK for Cannabis Reports API",
   "keyword": [
     ""
   ],
-  "author": "AJ Funk <aj.w.funk.9@gmail.com>",
+  "author": "AJ Funk <aj@ajfunk.me>",
   "main": "lib/index.js",
   "engines": {
     "node": ">=5.0",
