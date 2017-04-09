@@ -1,24 +1,10 @@
-import axios from 'axios';
 import Q from 'q';
+import {
+  sendRequest,
+  validateUcpc,
+} from './util';
 
 export default function extract(): object {
-  function sendRequest(endpoint: string, options: object = {}, cb: object): undefined {
-    let url = `/extracts${(endpoint ? `/${endpoint}?` : '?')}`;
-    if (options) {
-      if (options.sort) url = `${url}sort=${options.sort}&`;
-      if (options.page) url = `${url}page=${options.page}`;
-    }
-    axios.get(url)
-    .then((response: object): object => cb(null, response.data.data))
-    .catch((err: object): object => cb(err));
-  }
-
-  function validateUcpc(ucpc: string): boolean {
-    if (!ucpc || ucpc.length !== 25) return false;
-    if (typeof(ucpc) !== 'string' || /[^a-zA-Z0-9]/.test(ucpc)) return false;
-    return true;
-  }
-
   function validateExtractType(extractType: string): boolean {
     const validTypes = [
       'kief',
@@ -41,7 +27,7 @@ export default function extract(): object {
 
     all(options: object = {}): undefined {
       const deferred = Q.defer();
-      sendRequest(null, options, (err: string, data: object): undefined => {
+      sendRequest('extracts', options, (err: string, data: object): undefined => {
         if (err) return deferred.reject(err);
         return deferred.resolve(data);
       });
@@ -53,17 +39,20 @@ export default function extract(): object {
       if (!validateExtractType(extractType.toLowerCase())) {
         deferred.reject(new Error('Invalid Extract Type.'));
       }
-      sendRequest(`type/${extractType}`, options, (err: string, data: object): undefined => {
-        if (err) return deferred.reject(err);
-        return deferred.resolve(data);
-      });
+      sendRequest(`extracts/type/${extractType}`,
+        options,
+        (err: string, data: object): undefined => {
+          if (err) return deferred.reject(err);
+          return deferred.resolve(data);
+        }
+      );
       return deferred.promise;
     },
 
     extract(ucpc: string): undefined {
       const deferred = Q.defer();
       if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
-      sendRequest(`${ucpc}`, null, (err: string, data: object): undefined => {
+      sendRequest(`extracts/${ucpc}`, null, (err: string, data: object): undefined => {
         if (err) return deferred.reject(err);
         return deferred.resolve(data);
       });
@@ -73,7 +62,7 @@ export default function extract(): object {
     user(ucpc: string): undefined {
       const deferred = Q.defer();
       if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
-      sendRequest(`${ucpc}/user`, null, (err: string, data: object): undefined => {
+      sendRequest(`extracts/${ucpc}/user`, null, (err: string, data: object): undefined => {
         if (err) return deferred.reject(err);
         return deferred.resolve(data);
       });
@@ -83,7 +72,7 @@ export default function extract(): object {
     reviews(ucpc: string, options: object = {}): undefined {
       const deferred = Q.defer();
       if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
-      sendRequest(`${ucpc}/reviews`, options, (err: string, data: object): undefined => {
+      sendRequest(`extracts/${ucpc}/reviews`, options, (err: string, data: object): undefined => {
         if (err) return deferred.reject(err);
         return deferred.resolve(data);
       });
@@ -93,17 +82,20 @@ export default function extract(): object {
     effectsFlavors(ucpc: string): undefined {
       const deferred = Q.defer();
       if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
-      sendRequest(`${ucpc}/effectsFlavors`, null, (err: string, data: object): undefined => {
-        if (err) return deferred.reject(err);
-        return deferred.resolve(data);
-      });
+      sendRequest(`extracts/${ucpc}/effectsFlavors`,
+        null,
+        (err: string, data: object): undefined => {
+          if (err) return deferred.reject(err);
+          return deferred.resolve(data);
+        }
+      );
       return deferred.promise;
     },
 
     producer(ucpc: string): undefined {
       const deferred = Q.defer();
       if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
-      sendRequest(`${ucpc}/producer`, null, (err: string, data: object): undefined => {
+      sendRequest(`extracts/${ucpc}/producer`, null, (err: string, data: object): undefined => {
         if (err) return deferred.reject(err);
         return deferred.resolve(data);
       });
@@ -113,7 +105,7 @@ export default function extract(): object {
     strain(ucpc: string): undefined {
       const deferred = Q.defer();
       if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
-      sendRequest(`${ucpc}/strain`, null, (err: string, data: object): undefined => {
+      sendRequest(`extracts/${ucpc}/strain`, null, (err: string, data: object): undefined => {
         if (err) return deferred.reject(err);
         return deferred.resolve(data);
       });
@@ -132,7 +124,7 @@ export default function extract(): object {
         deferred.reject(new Error('Longitude must be a string or number.'));
       }
       const radius = (options && options.radius) ? `/${options.radius}` : '';
-      sendRequest(`${ucpc}/availability/geo/${lat}/${lng}${radius}`,
+      sendRequest(`extracts/${ucpc}/availability/geo/${lat}/${lng}${radius}`,
         options,
         (err: string, data: object): undefined => {
           if (err) return deferred.reject(err);

@@ -1,29 +1,15 @@
-import axios from 'axios';
 import Q from 'q';
+import {
+  sendRequest,
+  validateUcpc,
+} from './util';
 
 export default function producer(): object {
-  function sendRequest(endpoint: string, options: object = {}, cb: object): undefined {
-    let url = `/producers${(endpoint ? `/${endpoint}?` : '?')}`;
-    if (options) {
-      if (options.sort) url = `${url}sort=${options.sort}&`;
-      if (options.page) url = `${url}page=${options.page}`;
-    }
-    axios.get(url)
-    .then((response: object): object => cb(null, response.data.data))
-    .catch((err: object): object => cb(err));
-  }
-
-  function validateUcpc(ucpc: string): boolean {
-    if (!ucpc || ucpc.length !== 25) return false;
-    if (typeof(ucpc) !== 'string' || /[^a-zA-Z0-9]/.test(ucpc)) return false;
-    return true;
-  }
-
   return {
 
     all(options: object = {}): undefined {
       const deferred = Q.defer();
-      sendRequest(null, options, (err: string, data: object): undefined => {
+      sendRequest('producers', options, (err: string, data: object): undefined => {
         if (err) return deferred.reject(err);
         return deferred.resolve(data);
       });
@@ -33,7 +19,7 @@ export default function producer(): object {
     producer(ucpc: string): undefined {
       const deferred = Q.defer();
       if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
-      sendRequest(`${ucpc}`, null, (err: string, data: object): undefined => {
+      sendRequest(`producers/${ucpc}`, null, (err: string, data: object): undefined => {
         if (err) return deferred.reject(err);
         return deferred.resolve(data);
       });
@@ -43,7 +29,7 @@ export default function producer(): object {
     extracts(ucpc: string, options: object = {}): undefined {
       const deferred = Q.defer();
       if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
-      sendRequest(`${ucpc}/extracts`, options, (err: string, data: object): undefined => {
+      sendRequest(`producers/${ucpc}/extracts`, options, (err: string, data: object): undefined => {
         if (err) return deferred.reject(err);
         return deferred.resolve(data);
       });
@@ -53,7 +39,7 @@ export default function producer(): object {
     edibles(ucpc: string, options: object = {}): undefined {
       const deferred = Q.defer();
       if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
-      sendRequest(`${ucpc}/edibles`, options, (err: string, data: object): undefined => {
+      sendRequest(`producers/${ucpc}/edibles`, options, (err: string, data: object): undefined => {
         if (err) return deferred.reject(err);
         return deferred.resolve(data);
       });
@@ -63,7 +49,7 @@ export default function producer(): object {
     products(ucpc: string, options: object = {}): undefined {
       const deferred = Q.defer();
       if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
-      sendRequest(`${ucpc}/products`, options, (err: string, data: object): undefined => {
+      sendRequest(`producers/${ucpc}/products`, options, (err: string, data: object): undefined => {
         if (err) return deferred.reject(err);
         return deferred.resolve(data);
       });
@@ -82,7 +68,7 @@ export default function producer(): object {
         deferred.reject(new Error('Longitude must be a string or number.'));
       }
       const radius = (options && options.radius) ? `/${options.radius}` : '';
-      sendRequest(`${ucpc}/availability/geo/${lat}/${lng}${radius}`,
+      sendRequest(`producers/${ucpc}/availability/geo/${lat}/${lng}${radius}`,
         options,
         (err: string, data: object): undefined => {
           if (err) return deferred.reject(err);

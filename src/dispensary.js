@@ -1,20 +1,9 @@
-import axios from 'axios';
 import Q from 'q';
+import { sendRequest } from './util';
 
 // TODO validate city and slugs
 
 export default function dispensary(): object {
-  function sendRequest(endpoint: string, options: object = {}, cb: object): undefined {
-    let url = `/dispensaries${(endpoint ? `/${endpoint}?` : '?')}`;
-    if (options) {
-      if (options.sort) url = `${url}sort=${options.sort}&`;
-      if (options.page) url = `${url}page=${options.page}`;
-    }
-    axios.get(url)
-    .then((response: object): object => cb(null, response.data.data))
-    .catch((err: object): object => cb(err));
-  }
-
   function validateState(state: string): string {
     const stateNames = [
       'ARIZONA', 'ALABAMA', 'ALASKA', 'ARIZONA', 'ARKANSAS', 'CALIFORNIA', 'COLORADO',
@@ -43,7 +32,7 @@ export default function dispensary(): object {
 
     all(options: object = {}): undefined {
       const deferred = Q.defer();
-      sendRequest(null, options, (err: string, data: object): undefined => {
+      sendRequest('dispensaries', options, (err: string, data: object): undefined => {
         if (err) return deferred.reject(err);
         return deferred.resolve(data);
       });
@@ -57,10 +46,13 @@ export default function dispensary(): object {
       if (!validState) deferred.reject(new Error('Invalid State'));
       if (!city) deferred.reject(new Error('City is required.'));
       if (!slug) deferred.reject(new Error('Slug is required.'));
-      sendRequest(`${validState}/${city}/${slug}`, null, (err: string, data: object): undefined => {
-        if (err) return deferred.reject(err);
-        return deferred.resolve(data);
-      });
+      sendRequest(`dispensaries/${validState}/${city}/${slug}`,
+        null,
+        (err: string, data: object): undefined => {
+          if (err) return deferred.reject(err);
+          return deferred.resolve(data);
+        }
+      );
       return deferred.promise;
     },
 
@@ -71,7 +63,7 @@ export default function dispensary(): object {
       if (!validState) deferred.reject(new Error('Invalid State'));
       if (!city) deferred.reject(new Error('City is required.'));
       if (!slug) deferred.reject(new Error('Slug is required.'));
-      sendRequest(`${validState}/${city}/${slug}/strains`,
+      sendRequest(`dispensaries/${validState}/${city}/${slug}/strains`,
         options,
         (err: string, data: object): undefined => {
           if (err) return deferred.reject(err);
@@ -88,7 +80,7 @@ export default function dispensary(): object {
       if (!validState) deferred.reject(new Error('Invalid State'));
       if (!city) deferred.reject(new Error('City is required.'));
       if (!slug) deferred.reject(new Error('Slug is required.'));
-      sendRequest(`${validState}/${city}/${slug}/extracts`,
+      sendRequest(`dispensaries/${validState}/${city}/${slug}/extracts`,
         options,
         (err: string, data: object): undefined => {
           if (err) return deferred.reject(err);
@@ -105,7 +97,7 @@ export default function dispensary(): object {
       if (!validState) deferred.reject(new Error('Invalid State'));
       if (!city) deferred.reject(new Error('City is required.'));
       if (!slug) deferred.reject(new Error('Slug is required.'));
-      sendRequest(`${validState}/${city}/${slug}/edibles`,
+      sendRequest(`dispensaries/${validState}/${city}/${slug}/edibles`,
         options,
         (err: string, data: object): undefined => {
           if (err) return deferred.reject(err);
@@ -122,7 +114,7 @@ export default function dispensary(): object {
       if (!validState) deferred.reject(new Error('Invalid State'));
       if (!city) deferred.reject(new Error('City is required.'));
       if (!slug) deferred.reject(new Error('Slug is required.'));
-      sendRequest(`${validState}/${city}/${slug}/products`,
+      sendRequest(`dispensaries/${validState}/${city}/${slug}/products`,
         options,
         (err: string, data: object): undefined => {
           if (err) return deferred.reject(err);

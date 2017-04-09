@@ -14,7 +14,7 @@ npm install --save cannabis-reports
 ```javascript
 import { Strain, Flower, Extract, Edible, Product, Producer, SeedCompany, Dispensary } from 'cannabis-reports';
 ```
-Only import the modules your need. For example, if you only need the `Strain` and `Extract` modules:
+Only import the modules you need. For example, if you only need the `Strain` and `Extract` modules:
 ```javascript
 import { Strain, Extract } from 'cannabis-reports';
 ```

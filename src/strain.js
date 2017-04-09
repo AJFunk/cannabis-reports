@@ -1,29 +1,15 @@
-import axios from 'axios';
 import Q from 'q';
+import {
+  sendRequest,
+  validateUcpc,
+} from './util';
 
 export default function strain(): object {
-  function sendRequest(endpoint: string, options: object = {}, cb: object): undefined {
-    let url = `/strains${(endpoint ? `/${endpoint}?` : '?')}`;
-    if (options) {
-      if (options.sort) url = `${url}sort=${options.sort}&`;
-      if (options.page) url = `${url}page=${options.page}`;
-    }
-    axios.get(url)
-    .then((response: object): object => cb(null, response.data.data))
-    .catch((err: object): object => cb(err));
-  }
-
-  function validateUcpc(ucpc: string): boolean {
-    if (!ucpc || ucpc.length !== 25) return false;
-    if (typeof(ucpc) !== 'string' || /[^a-zA-Z0-9]/.test(ucpc)) return false;
-    return true;
-  }
-
   return {
 
     all(options: object = {}): undefined {
       const deferred = Q.defer();
-      sendRequest(null, options, (err: string, data: object): undefined => {
+      sendRequest('strains', options, (err: string, data: object): undefined => {
         if (err) return deferred.reject(err);
         return deferred.resolve(data);
       });
@@ -35,7 +21,7 @@ export default function strain(): object {
       if (!query || typeof(query) !== 'string') {
         deferred.reject(new Error('A string query is required.'));
       }
-      sendRequest(`search/${query}`, options, (err: string, data: object): undefined => {
+      sendRequest(`strains/search/${query}`, options, (err: string, data: object): undefined => {
         if (err) return deferred.reject(err);
         return deferred.resolve(data);
       });
@@ -45,7 +31,7 @@ export default function strain(): object {
     strain(ucpc: string): undefined {
       const deferred = Q.defer();
       if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
-      sendRequest(ucpc, null, (err: string, data: object): undefined => {
+      sendRequest(`strains/${ucpc}`, null, (err: string, data: object): undefined => {
         if (err) return deferred.reject(err);
         return deferred.resolve(data);
       });
@@ -55,7 +41,7 @@ export default function strain(): object {
     user(ucpc: string): undefined {
       const deferred = Q.defer();
       if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
-      sendRequest(`${ucpc}/user`, null, (err: string, data: object): undefined => {
+      sendRequest(`strains/${ucpc}/user`, null, (err: string, data: object): undefined => {
         if (err) return deferred.reject(err);
         return deferred.resolve(data);
       });
@@ -65,7 +51,7 @@ export default function strain(): object {
     reviews(ucpc: string, options: object = {}): undefined {
       const deferred = Q.defer();
       if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
-      sendRequest(`${ucpc}/reviews`, options, (err: string, data: object): undefined => {
+      sendRequest(`strains/${ucpc}/reviews`, options, (err: string, data: object): undefined => {
         if (err) return deferred.reject(err);
         return deferred.resolve(data);
       });
@@ -75,17 +61,20 @@ export default function strain(): object {
     effectsFlavors(ucpc: string): undefined {
       const deferred = Q.defer();
       if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
-      sendRequest(`${ucpc}/effectsFlavors`, null, (err: string, data: object): undefined => {
-        if (err) return deferred.reject(err);
-        return deferred.resolve(data);
-      });
+      sendRequest(`strains/${ucpc}/effectsFlavors`,
+        null,
+        (err: string, data: object): undefined => {
+          if (err) return deferred.reject(err);
+          return deferred.resolve(data);
+        }
+      );
       return deferred.promise;
     },
 
     seedCompany(ucpc: string): undefined {
       const deferred = Q.defer();
       if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
-      sendRequest(`${ucpc}/seedCompany`, null, (err: string, data: object): undefined => {
+      sendRequest(`strains/${ucpc}/seedCompany`, null, (err: string, data: object): undefined => {
         if (err) return deferred.reject(err);
         return deferred.resolve(data);
       });
@@ -95,7 +84,7 @@ export default function strain(): object {
     genetics(ucpc: string): undefined {
       const deferred = Q.defer();
       if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
-      sendRequest(`${ucpc}/genetics`, null, (err: string, data: object): undefined => {
+      sendRequest(`strains/${ucpc}/genetics`, null, (err: string, data: object): undefined => {
         if (err) return deferred.reject(err);
         return deferred.resolve(data);
       });
@@ -105,7 +94,7 @@ export default function strain(): object {
     children(ucpc: string, options: object = {}): undefined {
       const deferred = Q.defer();
       if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
-      sendRequest(`${ucpc}/children`, options, (err: string, data: object): undefined => {
+      sendRequest(`strains/${ucpc}/children`, options, (err: string, data: object): undefined => {
         if (err) return deferred.reject(err);
         return deferred.resolve(data);
       });
@@ -124,7 +113,7 @@ export default function strain(): object {
         deferred.reject(new Error('Longitude must be a string or number.'));
       }
       const radius = (options && options.radius) ? `/${options.radius}` : '';
-      sendRequest(`${ucpc}/availability/geo/${lat}/${lng}/${radius}`,
+      sendRequest(`strains/${ucpc}/availability/geo/${lat}/${lng}/${radius}`,
         options,
         (err: string, data: object): undefined => {
           if (err) return deferred.reject(err);
