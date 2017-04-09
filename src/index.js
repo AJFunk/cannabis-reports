@@ -3,14 +3,14 @@ import axios from 'axios';
 axios.defaults.headers.common['X-API-Key'] = process.env.CANNABIS_REPORTS_API_KEY || '';
 axios.defaults.baseURL = 'https://www.cannabisreports.com/api/v1.0/';
 
-import strain from './strain.js';
-import flower from './flower.js';
-import extract from './extract.js';
-import edible from './edible.js';
-import product from './product.js';
-import producer from './producer.js';
-import dispensary from './dispensary.js';
-import seedCompany from './seed-company.js';
+import strain from './strain';
+import flower from './flower';
+import extract from './extract';
+import edible from './edible';
+import product from './product';
+import producer from './producer';
+import dispensary from './dispensary';
+import seedCompany from './seed-company';
 
 const Strain = strain();
 const Flower = flower();
