@@ -3,6 +3,8 @@ A Cannabis Reports API wrapper for Node.js
 
 [![Build Status](https://travis-ci.org/AJFunk/cannabis-reports.svg?branch=master)](https://travis-ci.org/AJFunk/cannabis-reports)
 
+This project has **no dependencies!**
+
 ### Installation
 
 ```sh
@@ -20,8 +22,8 @@ import { Strain, Extract } from 'cannabis-reports';
 ```
 To set your API Key, set the environment variable `CANNABIS_REPORTS_API_KEY`. Alternatively, you can set the configuration manually
 ```javascript
-import { CannabisConfig } from 'cannabis-reports';
-CannabisConfig.key('<your-api-key>')
+import { setCannabisReportsKey } from 'cannabis-reports';
+setCannabisReportsKey('<your-api-key>')
 ```
 
 ## Strains
