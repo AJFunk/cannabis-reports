@@ -28,30 +28,42 @@ export default function producer(): object {
     extracts(ucpc: string, options: object = {}): undefined {
       return new Promise((resolve: object, reject: object): undefined => {
         if (!validateUcpc(ucpc)) reject(new Error('Invalid UCPC.'));
-        sendRequest(`producers/${ucpc}/extracts`, options, (err: string, data: object): undefined => {
-          if (err) return reject(new Error(err));
-          return resolve(data);
-        });
+        sendRequest(
+          `producers/${ucpc}/extracts`,
+          options,
+          (err: string, data: object): undefined => {
+            if (err) return reject(new Error(err));
+            return resolve(data);
+          }
+        );
       });
     },
 
     edibles(ucpc: string, options: object = {}): undefined {
       return new Promise((resolve: object, reject: object): undefined => {
         if (!validateUcpc(ucpc)) reject(new Error('Invalid UCPC.'));
-        sendRequest(`producers/${ucpc}/edibles`, options, (err: string, data: object): undefined => {
-          if (err) return reject(new Error(err));
-          return resolve(data);
-        });
+        sendRequest(
+          `producers/${ucpc}/edibles`,
+          options,
+          (err: string, data: object): undefined => {
+            if (err) return reject(new Error(err));
+            return resolve(data);
+          }
+        );
       });
     },
 
     products(ucpc: string, options: object = {}): undefined {
       return new Promise((resolve: object, reject: object): undefined => {
         if (!validateUcpc(ucpc)) reject(new Error('Invalid UCPC.'));
-        sendRequest(`producers/${ucpc}/products`, options, (err: string, data: object): undefined => {
-          if (err) return reject(new Error(err));
-          return resolve(data);
-        });
+        sendRequest(
+          `producers/${ucpc}/products`,
+          options,
+          (err: string, data: object): undefined => {
+            if (err) return reject(new Error(err));
+            return resolve(data);
+          }
+        );
       });
     },
 

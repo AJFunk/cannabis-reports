@@ -42,10 +42,14 @@ export default function edible(): object {
         if (!validateEdibleType(edibleType.toLowerCase())) {
           reject(new Error('Invalid Edible Type.'));
         }
-        sendRequest(`edibles/type/${edibleType}`, options, (err: string, data: object): undefined => {
-          if (err) return reject(new Error(err));
-          return resolve(data);
-        });
+        sendRequest(
+          `edibles/type/${edibleType}`,
+          options,
+          (err: string, data: object): undefined => {
+            if (err) return reject(new Error(err));
+            return resolve(data);
+          }
+        );
       });
     },
 

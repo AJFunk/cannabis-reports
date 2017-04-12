@@ -17,8 +17,8 @@ const sendRequest = (endpoint: string, options: object = {}, cb: object): undefi
     path: `/api/v1.0/${url}`,
     method: 'GET',
     headers: {
-      'X-API-Key': apiKey
-    }
+      'X-API-Key': apiKey,
+    },
   };
 
   const req = https.request(params, (res: object): null => {
