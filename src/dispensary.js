@@ -1,4 +1,3 @@
-import Q from 'q';
 import { sendRequest } from './util';
 
 // TODO validate city and slugs
@@ -31,97 +30,97 @@ export default function dispensary(): object {
   return {
 
     all(options: object = {}): undefined {
-      const deferred = Q.defer();
-      sendRequest('dispensaries', options, (err: string, data: object): undefined => {
-        if (err) return deferred.reject(err);
-        return deferred.resolve(data);
+      return new Promise((resolve: object, reject: object): undefined => {
+        sendRequest('dispensaries', options, (err: string, data: object): undefined => {
+          if (err) return reject(new Error(err));
+          return resolve(data);
+        });
       });
-      return deferred.promise;
     },
 
     dispensary(state: string, city: string, slug: string): undefined {
-      const deferred = Q.defer();
-      if (!state) deferred.reject(new Error('State is required'));
-      const validState = validateState(state);
-      if (!validState) deferred.reject(new Error('Invalid State'));
-      if (!city) deferred.reject(new Error('City is required.'));
-      if (!slug) deferred.reject(new Error('Slug is required.'));
-      sendRequest(`dispensaries/${validState}/${city}/${slug}`,
-        null,
-        (err: string, data: object): undefined => {
-          if (err) return deferred.reject(err);
-          return deferred.resolve(data);
-        }
-      );
-      return deferred.promise;
+      return new Promise((resolve: object, reject: object): undefined => {
+        if (!state) reject(new Error('State is required'));
+        const validState = validateState(state);
+        if (!validState) reject(new Error('Invalid State'));
+        if (!city) reject(new Error('City is required.'));
+        if (!slug) reject(new Error('Slug is required.'));
+        sendRequest(`dispensaries/${validState}/${city}/${slug}`,
+          null,
+          (err: string, data: object): undefined => {
+            if (err) return reject(new Error(err));
+            return resolve(data);
+          }
+        );
+      });
     },
 
     strains(state: string, city: string, slug: string, options: object = {}): undefined {
-      const deferred = Q.defer();
-      if (!state) deferred.reject(new Error('State is required'));
-      const validState = validateState(state);
-      if (!validState) deferred.reject(new Error('Invalid State'));
-      if (!city) deferred.reject(new Error('City is required.'));
-      if (!slug) deferred.reject(new Error('Slug is required.'));
-      sendRequest(`dispensaries/${validState}/${city}/${slug}/strains`,
-        options,
-        (err: string, data: object): undefined => {
-          if (err) return deferred.reject(err);
-          return deferred.resolve(data);
-        }
-      );
-      return deferred.promise;
+      return new Promise((resolve: object, reject: object): undefined => {
+        if (!state) reject(new Error('State is required'));
+        const validState = validateState(state);
+        if (!validState) reject(new Error('Invalid State'));
+        if (!city) reject(new Error('City is required.'));
+        if (!slug) reject(new Error('Slug is required.'));
+        sendRequest(`dispensaries/${validState}/${city}/${slug}/strains`,
+          options,
+          (err: string, data: object): undefined => {
+            if (err) return reject(new Error(err));
+            return resolve(data);
+          }
+        );
+      });
     },
 
     extracts(state: string, city: string, slug: string, options: object = {}): undefined {
-      const deferred = Q.defer();
-      if (!state) deferred.reject(new Error('State is required'));
-      const validState = validateState(state);
-      if (!validState) deferred.reject(new Error('Invalid State'));
-      if (!city) deferred.reject(new Error('City is required.'));
-      if (!slug) deferred.reject(new Error('Slug is required.'));
-      sendRequest(`dispensaries/${validState}/${city}/${slug}/extracts`,
-        options,
-        (err: string, data: object): undefined => {
-          if (err) return deferred.reject(err);
-          return deferred.resolve(data);
-        }
-      );
-      return deferred.promise;
+      return new Promise((resolve: object, reject: object): undefined => {
+        if (!state) reject(new Error('State is required'));
+        const validState = validateState(state);
+        if (!validState) reject(new Error('Invalid State'));
+        if (!city) reject(new Error('City is required.'));
+        if (!slug) reject(new Error('Slug is required.'));
+        sendRequest(`dispensaries/${validState}/${city}/${slug}/extracts`,
+          options,
+          (err: string, data: object): undefined => {
+            if (err) return reject(new Error(err));
+            return resolve(data);
+          }
+        );
+      });
     },
 
     edibles(state: string, city: string, slug: string, options: object = {}): undefined {
-      const deferred = Q.defer();
-      if (!state) deferred.reject(new Error('State is required'));
-      const validState = validateState(state);
-      if (!validState) deferred.reject(new Error('Invalid State'));
-      if (!city) deferred.reject(new Error('City is required.'));
-      if (!slug) deferred.reject(new Error('Slug is required.'));
-      sendRequest(`dispensaries/${validState}/${city}/${slug}/edibles`,
-        options,
-        (err: string, data: object): undefined => {
-          if (err) return deferred.reject(err);
-          return deferred.resolve(data);
-        }
-      );
-      return deferred.promise;
+      return new Promise((resolve: object, reject: object): undefined => {
+        if (!state) reject(new Error('State is required'));
+        const validState = validateState(state);
+        if (!validState) reject(new Error('Invalid State'));
+        if (!city) reject(new Error('City is required.'));
+        if (!slug) reject(new Error('Slug is required.'));
+        sendRequest(`dispensaries/${validState}/${city}/${slug}/edibles`,
+          options,
+          (err: string, data: object): undefined => {
+            if (err) return reject(new Error(err));
+            return resolve(data);
+          }
+        );
+      });
     },
 
     products(state: string, city: string, slug: string, options: object = {}): undefined {
-      const deferred = Q.defer();
-      if (!state) deferred.reject(new Error('State is required'));
-      const validState = validateState(state);
-      if (!validState) deferred.reject(new Error('Invalid State'));
-      if (!city) deferred.reject(new Error('City is required.'));
-      if (!slug) deferred.reject(new Error('Slug is required.'));
-      sendRequest(`dispensaries/${validState}/${city}/${slug}/products`,
-        options,
-        (err: string, data: object): undefined => {
-          if (err) return deferred.reject(err);
-          return deferred.resolve(data);
-        }
-      );
-      return deferred.promise;
+      return new Promise((resolve: object, reject: object): undefined => {
+        if (!state) reject(new Error('State is required'));
+        const validState = validateState(state);
+        if (!validState) reject(new Error('Invalid State'));
+        if (!city) reject(new Error('City is required.'));
+        if (!slug) reject(new Error('Slug is required.'));
+        sendRequest(`dispensaries/${validState}/${city}/${slug}/products`,
+          options,
+          (err: string, data: object): undefined => {
+            if (err) return reject(new Error(err));
+            return resolve(data);
+          }
+        );
+      });
     },
 
   };

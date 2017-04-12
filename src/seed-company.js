@@ -1,4 +1,3 @@
-import Q from 'q';
 import {
   sendRequest,
   validateUcpc,
@@ -8,39 +7,39 @@ export default function seedCompany(): object {
   return {
 
     seedCompany(ucpc: string): undefined {
-      const deferred = Q.defer();
-      if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
-      sendRequest(`seed-companies/${ucpc}`, null, (err: string, data: object): undefined => {
-        if (err) return deferred.reject(err);
-        return deferred.resolve(data);
+      return new Promise((resolve: object, reject: object): undefined => {
+        if (!validateUcpc(ucpc)) reject(new Error('Invalid UCPC.'));
+        sendRequest(`seed-companies/${ucpc}`, null, (err: string, data: object): undefined => {
+          if (err) return reject(new Error(err));
+          return resolve(data);
+        });
       });
-      return deferred.promise;
     },
 
     strains(ucpc: string, options: object = {}): undefined {
-      const deferred = Q.defer();
-      if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
-      sendRequest(`seed-companies/${ucpc}/strains`,
-        options,
-        (err: string, data: object): undefined => {
-          if (err) return deferred.reject(err);
-          return deferred.resolve(data);
-        }
-      );
-      return deferred.promise;
+      return new Promise((resolve: object, reject: object): undefined => {
+        if (!validateUcpc(ucpc)) reject(new Error('Invalid UCPC.'));
+        sendRequest(`seed-companies/${ucpc}/strains`,
+          options,
+          (err: string, data: object): undefined => {
+            if (err) return reject(new Error(err));
+            return resolve(data);
+          }
+        );
+      });
     },
 
     reviews(ucpc: string, options: object = {}): undefined {
-      const deferred = Q.defer();
-      if (!validateUcpc(ucpc)) deferred.reject(new Error('Invalid UCPC.'));
-      sendRequest(`seed-companies/${ucpc}/reviews`,
-        options,
-        (err: string, data: object): undefined => {
-          if (err) return deferred.reject(err);
-          return deferred.resolve(data);
-        }
-      );
-      return deferred.promise;
+      return new Promise((resolve: object, reject: object): undefined => {
+        if (!validateUcpc(ucpc)) reject(new Error('Invalid UCPC.'));
+        sendRequest(`seed-companies/${ucpc}/reviews`,
+          options,
+          (err: string, data: object): undefined => {
+            if (err) return reject(new Error(err));
+            return resolve(data);
+          }
+        );
+      });
     },
 
   };
