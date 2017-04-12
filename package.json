@@ -1,10 +1,7 @@
 {
   "name": "cannabis-reports",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "SDK for Cannabis Reports API",
-  "keyword": [
-    ""
-  ],
   "author": "AJ Funk <aj@ajfunk.me>",
   "main": "lib/index.js",
   "engines": {
@@ -37,11 +34,9 @@
     "eslint-plugin-babel": "^3.2.0",
     "eslint-plugin-flow-vars": "^0.5.0",
     "eslint-plugin-flowtype": "^2.4.0",
-    "mocha": "^2.4.5",
-    "pretty-error": "^2.0.0"
+    "mocha": "^2.4.5"
   },
   "dependencies": {
-    "axios": "^0.14.0",
     "q": "^1.4.1"
   }
 }

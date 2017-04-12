@@ -1,4 +1,5 @@
-import axios from 'axios';
+import https from 'https';
+import { apiKey } from './config';
 
 const sendRequest = (endpoint: string, options: object = {}, cb: object): undefined => {
   let url = `${endpoint}?`;
@@ -9,10 +10,31 @@ const sendRequest = (endpoint: string, options: object = {}, cb: object): undefi
       }
     }
   }
-  return axios
-    .get(url)
-    .then((response: object): object => cb(null, response.data.data))
-    .catch((err: object): object => cb(err));
+  url = url.replace(/\s/g, '%20');
+
+  const params = {
+    host: 'www.cannabisreports.com',
+    path: `/api/v1.0/${url}`,
+    method: 'GET',
+    headers: {
+      'X-API-Key': apiKey
+    }
+  };
+
+  const req = https.request(params, (res: object): null => {
+    if (res.statusCode < 200 || res.statusCode >= 300) {
+      return cb(`statusCode=${res.statusCode}`);
+    }
+    const buf = [];
+    res.on('data', (c: object): object => buf.push(c));
+    res.on('end', (): object => {
+      const d = JSON.parse(Buffer.concat(buf));
+      return cb(null, d.data);
+    });
+    return null;
+  });
+  req.on('error', (err: object): object => cb(err));
+  req.end();
 };
 
 const validateUcpc = (ucpc: string): boolean => {
