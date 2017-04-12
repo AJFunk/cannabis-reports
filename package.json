@@ -14,7 +14,6 @@
   },
   "license": "MIT",
   "scripts": {
-    "test": "npm run test-source && npm run test-build",
     "test-source": "export TEST_PATH=src && mocha --timeout 8000 tests/* --compilers js:babel-register --require ./tests/helper.js --recursive",
     "test-build": "export TEST_PATH=lib && mocha --timeout 8000 tests/* --compilers js:babel-register --require ./tests/helper.js --recursive",
     "start": "babel-node ./src/index.js",
