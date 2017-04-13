@@ -1,4 +1,4 @@
-import https from 'https';
+import { https } from './redirects';
 import { apiKey } from './config';
 
 const sendRequest = (endpoint: string, options: object = {}, cb: object): undefined => {
@@ -11,6 +11,9 @@ const sendRequest = (endpoint: string, options: object = {}, cb: object): undefi
     }
   }
   url = url.replace(/\s/g, '%20');
+  if (url[url.length - 1] === '&' || url[url.length - 1] === '?') {
+    url = url.substr(0, url.length - 1);
+  }
 
   const params = {
     host: 'www.cannabisreports.com',
