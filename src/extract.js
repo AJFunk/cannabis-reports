@@ -1,5 +1,6 @@
 // @flow
 import {
+  handleResult,
   sendRequest,
   validateUcpc,
 } from './util';
@@ -12,10 +13,9 @@ export default function extract(): Object {
         sendRequest(
           'extracts',
           options,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         )
       ),
 
@@ -24,10 +24,9 @@ export default function extract(): Object {
         sendRequest(
           `extracts/type/${extractType}`,
           options,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         )
       ),
 
@@ -37,10 +36,9 @@ export default function extract(): Object {
         return sendRequest(
           `extracts/${ucpc}`,
           null,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 
@@ -50,10 +48,9 @@ export default function extract(): Object {
         return sendRequest(
           `extracts/${ucpc}/user`,
           null,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 
@@ -63,10 +60,9 @@ export default function extract(): Object {
         return sendRequest(
           `extracts/${ucpc}/reviews`,
           options,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 
@@ -75,10 +71,9 @@ export default function extract(): Object {
         if (!validateUcpc(ucpc)) return reject(new Error('Invalid UCPC.'));
         return sendRequest(`extracts/${ucpc}/effectsFlavors`,
           null,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 
@@ -88,10 +83,9 @@ export default function extract(): Object {
         return sendRequest(
           `extracts/${ucpc}/producer`,
           null,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 
@@ -101,10 +95,9 @@ export default function extract(): Object {
         return sendRequest(
           `extracts/${ucpc}/strain`,
           null,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 
@@ -122,10 +115,9 @@ export default function extract(): Object {
         const radius = (options && options.radius) ? `/${options.radius}` : '';
         return sendRequest(`extracts/${ucpc}/availability/geo/${lat}/${lng}${radius}`,
           options,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 

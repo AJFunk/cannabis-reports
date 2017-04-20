@@ -1,5 +1,6 @@
 // @flow
 import {
+  handleResult,
   sendRequest,
   validateUcpc,
 } from './util';
@@ -12,10 +13,9 @@ export default function product(): Object {
         sendRequest(
           'products',
           options,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         )
       ),
 
@@ -23,10 +23,9 @@ export default function product(): Object {
       new Promise((resolve: (data: Object) => void, reject: (reason: Error) => void): mixed =>
         sendRequest(`products/type/${productType}`,
           options,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         )
       ),
 
@@ -36,10 +35,9 @@ export default function product(): Object {
         return sendRequest(
           `products/${ucpc}`,
           null,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 
@@ -49,10 +47,9 @@ export default function product(): Object {
         return sendRequest(
           `products/${ucpc}/user`,
           null,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 
@@ -62,10 +59,9 @@ export default function product(): Object {
         return sendRequest(
           `products/${ucpc}/reviews`,
           options,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 
@@ -75,10 +71,9 @@ export default function product(): Object {
         return sendRequest(
           `products/${ucpc}/effectsFlavors`,
           null,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 
@@ -88,10 +83,9 @@ export default function product(): Object {
         return sendRequest(
           `products/${ucpc}/producer`,
           null,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 
@@ -101,10 +95,9 @@ export default function product(): Object {
         return sendRequest(
           `products/${ucpc}/strain`,
           null,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 
@@ -123,10 +116,9 @@ export default function product(): Object {
         return sendRequest(
           `products/${ucpc}/availability/geo/${lat}/${lng}${radius}`,
           options,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 

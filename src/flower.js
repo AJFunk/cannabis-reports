@@ -1,5 +1,6 @@
 // @flow
 import {
+  handleResult,
   sendRequest,
   validateUcpc,
 } from './util';
@@ -12,10 +13,9 @@ export default function flower(): Object {
         sendRequest(
           'flowers',
           options,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         )
       ),
 
@@ -24,10 +24,9 @@ export default function flower(): Object {
         sendRequest(
           `flowers/type/${flowerType}`,
           options,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         )
       ),
 
@@ -37,10 +36,9 @@ export default function flower(): Object {
         return sendRequest(
           `flowers/${ucpc}`,
           null,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 
@@ -50,10 +48,9 @@ export default function flower(): Object {
         return sendRequest(
           `flowers/${ucpc}/user`,
           null,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 
@@ -63,10 +60,9 @@ export default function flower(): Object {
         return sendRequest(
           `flowers/${ucpc}/reviews`,
           options,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 
@@ -76,10 +72,9 @@ export default function flower(): Object {
         return sendRequest(
           `flowers/${ucpc}/effectsFlavors`,
           null,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 
@@ -89,10 +84,9 @@ export default function flower(): Object {
         return sendRequest(
           `flowers/${ucpc}/producer`,
           null,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 
@@ -102,10 +96,9 @@ export default function flower(): Object {
         return sendRequest(
           `flowers/${ucpc}/strain`,
           null,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 
@@ -123,10 +116,9 @@ export default function flower(): Object {
         const radius = (options && options.radius) ? `/${options.radius}` : '';
         return sendRequest(`flowers/${ucpc}/availability/geo/${lat}/${lng}${radius}`,
           options,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 

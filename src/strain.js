@@ -1,5 +1,6 @@
 // @flow
 import {
+  handleResult,
   sendRequest,
   validateUcpc,
 } from './util';
@@ -12,10 +13,9 @@ export default function strain(): Object {
         sendRequest(
           'strains',
           options,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         )
       ),
 
@@ -27,10 +27,9 @@ export default function strain(): Object {
         return sendRequest(
           `strains/search/${query}`,
           options,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 
@@ -40,10 +39,9 @@ export default function strain(): Object {
         return sendRequest(
           `strains/${ucpc}`,
           null,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 
@@ -53,10 +51,9 @@ export default function strain(): Object {
         return sendRequest(
           `strains/${ucpc}/user`,
           null,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 
@@ -66,10 +63,9 @@ export default function strain(): Object {
         return sendRequest(
           `strains/${ucpc}/reviews`,
           options,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 
@@ -79,10 +75,9 @@ export default function strain(): Object {
         return sendRequest(
           `strains/${ucpc}/effectsFlavors`,
           null,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 
@@ -92,10 +87,9 @@ export default function strain(): Object {
         return sendRequest(
           `strains/${ucpc}/seedCompany`,
           null,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 
@@ -105,10 +99,9 @@ export default function strain(): Object {
         return sendRequest(
           `strains/${ucpc}/genetics`,
           null,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 
@@ -118,10 +111,9 @@ export default function strain(): Object {
         return sendRequest(
           `strains/${ucpc}/children`,
           options,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 
@@ -139,10 +131,9 @@ export default function strain(): Object {
         const radius = (options && options.radius) ? `/${options.radius}` : '';
         return sendRequest(`strains/${ucpc}/availability/geo/${lat}/${lng}/${radius}`,
           options,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 

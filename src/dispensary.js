@@ -1,5 +1,8 @@
 // @flow
-import { sendRequest } from './util';
+import {
+  handleResult,
+  sendRequest,
+} from './util';
 
 // TODO validate city and slugs
 
@@ -35,10 +38,9 @@ export default function dispensary(): Object {
         sendRequest(
           'dispensaries',
           options,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         )
       ),
 
@@ -52,10 +54,9 @@ export default function dispensary(): Object {
         return sendRequest(
           `dispensaries/${validState}/${city}/${slug}`,
           null,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 
@@ -69,10 +70,9 @@ export default function dispensary(): Object {
         return sendRequest(
           `dispensaries/${validState}/${city}/${slug}/strains`,
           options,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 
@@ -86,10 +86,9 @@ export default function dispensary(): Object {
         return sendRequest(
           `dispensaries/${validState}/${city}/${slug}/extracts`,
           options,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 
@@ -103,10 +102,9 @@ export default function dispensary(): Object {
         return sendRequest(
           `dispensaries/${validState}/${city}/${slug}/edibles`,
           options,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 
@@ -120,10 +118,9 @@ export default function dispensary(): Object {
         return sendRequest(
           `dispensaries/${validState}/${city}/${slug}/products`,
           options,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 

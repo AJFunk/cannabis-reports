@@ -1,5 +1,6 @@
 // @flow
 import {
+  handleResult,
   sendRequest,
   validateUcpc,
 } from './util';
@@ -12,10 +13,9 @@ export default function producer(): Object {
         sendRequest(
           'producers',
           options,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         )
       ),
 
@@ -25,10 +25,9 @@ export default function producer(): Object {
         return sendRequest(
           `producers/${ucpc}`,
           null,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 
@@ -38,10 +37,9 @@ export default function producer(): Object {
         return sendRequest(
           `producers/${ucpc}/extracts`,
           options,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 
@@ -51,10 +49,9 @@ export default function producer(): Object {
         return sendRequest(
           `producers/${ucpc}/edibles`,
           options,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 
@@ -64,10 +61,9 @@ export default function producer(): Object {
         return sendRequest(
           `producers/${ucpc}/products`,
           options,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 
@@ -86,10 +82,9 @@ export default function producer(): Object {
         return sendRequest(
           `producers/${ucpc}/availability/geo/${lat}/${lng}${radius}`,
           options,
-          (err: Error | null, data?: Object): mixed => {
-            if (err) return reject(err);
-            return data ? resolve(data) : reject(new Error('No data found'));
-          }
+          resolve,
+          reject,
+          handleResult
         );
       }),
 
