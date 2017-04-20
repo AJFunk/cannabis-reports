@@ -28,7 +28,7 @@ const sendRequest = (endpoint: string, options: Object | null = {}, cb: Function
 
   const req = https.request(params, (res: Object): null => {
     if (res.statusCode < 200 || res.statusCode >= 300) {
-      return cb(`statusCode=${res.statusCode}`);
+      return cb(new Error(`statusCode=${res.statusCode}`));
     }
     const buf = [];
     res.on('data', (c: Object): number => buf.push(c));
