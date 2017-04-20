@@ -1,19 +1,15 @@
-'use strict';
+// @flow
 const url = require('url');
 const assert = require('assert');
 const http = require('http');
 const https = require('https');
-const Writable = require('stream').Writable;
+const Writable: Function = require('stream').Writable;
 
 const nativeProtocols = {
   'http:': http,
   'https:': https,
 };
 const schemes = {};
-const exports = module.exports = {
-  maxRedirects: 21,
-};
-
 const safeMethods = {
   GET: true,
   HEAD: true,
@@ -23,25 +19,25 @@ const safeMethods = {
 
 const eventHandlers = Object.create(null);
 
-['abort', 'aborted', 'error', 'socket'].forEach((event: object): undefined => {
-  eventHandlers[event] = function a(arg: object): undefined {
+['abort', 'aborted', 'error', 'socket'].forEach((event: string): void => {
+  eventHandlers[event] = function a(arg: Object): void {
     this._redirectable.emit(event, arg);
   };
 });
 
-function RedirectableRequest(options: object, responseCallback: object): undefined {
+function RedirectableRequest(options: Object, responseCallback: Object): void {
   Writable.call(this);
   this._options = options;
   this._redirectCount = 0;
   this._bufferedWrites = [];
   if (responseCallback) this.on('response', responseCallback);
-  this._onNativeResponse = (response: object): object => this._processResponse(response);
+  this._onNativeResponse = (response: Object): Object => this._processResponse(response);
   this._performRequest();
 }
 
 RedirectableRequest.prototype = Object.create(Writable.prototype);
 
-RedirectableRequest.prototype._performRequest = function b(): undefined {
+RedirectableRequest.prototype._performRequest = function b(): void {
   const protocol = this._options.protocol;
   if (this._options.agents) this._options.agent = this._options.agents[schemes[protocol]];
 
@@ -61,7 +57,7 @@ RedirectableRequest.prototype._performRequest = function b(): undefined {
       request.end();
     } else {
       let i = 0;
-      const writeNext = (): undefined => {
+      const writeNext = (): void => {
         if (i < bufferedWrites.length) {
           const bufferedWrite = bufferedWrites[i++];
           request.write(bufferedWrite.data, bufferedWrite.encoding, writeNext);
@@ -74,7 +70,7 @@ RedirectableRequest.prototype._performRequest = function b(): undefined {
   }
 };
 
-RedirectableRequest.prototype._processResponse = function c(response: object): null {
+RedirectableRequest.prototype._processResponse = function c(response: Object): null {
   const location = response.headers.location;
   if (location && this._options.followRedirects !== false &&
       response.statusCode >= 300 && response.statusCode < 400) {
@@ -109,62 +105,65 @@ RedirectableRequest.prototype._processResponse = function c(response: object): n
   return null;
 };
 
-RedirectableRequest.prototype.abort = function d(): undefined {
+RedirectableRequest.prototype.abort = function d(): void {
   this._currentRequest.abort();
 };
 
-RedirectableRequest.prototype.flushHeaders = function e(): undefined {
+RedirectableRequest.prototype.flushHeaders = function e(): void {
   this._currentRequest.flushHeaders();
 };
 
-RedirectableRequest.prototype.setNoDelay = function f(noDelay: boolean): undefined {
+RedirectableRequest.prototype.setNoDelay = function f(noDelay: boolean): void {
   this._currentRequest.setNoDelay(noDelay);
 };
 
 RedirectableRequest.prototype.setSocketKeepAlive =
-function g(enable: boolean, initialDelay: number): undefined {
+function g(enable: boolean, initialDelay: number): void {
   this._currentRequest.setSocketKeepAlive(enable, initialDelay);
 };
 
 RedirectableRequest.prototype.setTimeout =
-function h(timeout: number, callback: object): undefined {
-  this._currentRequest.setTimeout(timeout, callback);
+function h(timeout: number, cb: () => void): void {
+  this._currentRequest.setTimeout(timeout, cb);
 };
 
 RedirectableRequest.prototype._write =
-function i(data: object, encoding: string, callback: object): undefined {
-  this._currentRequest.write(data, encoding, callback);
+function i(data: Object, encoding: string, cb: () => void): void {
+  this._currentRequest.write(data, encoding, cb);
   this._bufferedWrites.push({ data, encoding });
 };
 
 RedirectableRequest.prototype.end =
-function j(data: object, encoding: string, callback: object): undefined {
-  this._currentRequest.end(data, encoding, callback);
+function j(data: Object, encoding: string, cb: () => void): void {
+  this._currentRequest.end(data, encoding, cb);
   if (data) this._bufferedWrites.push({ data, encoding });
 };
 
-Object.keys(nativeProtocols).forEach((protocol: string): undefined => {
+Object.keys(nativeProtocols).forEach((protocol: string): void => {
   const scheme = schemes[protocol] = protocol.substr(0, protocol.length - 1);
   const nativeProtocol = nativeProtocols[protocol];
-  const wrappedProtocol = exports[scheme] = Object.create(nativeProtocol);
+  const wrappedProtocol = module.exports[scheme] = Object.create(nativeProtocol);
 
-  wrappedProtocol.request = function k(options: object, callback: object): object {
+  wrappedProtocol.request = function k(options: Object | string, cb: () => void): Object {
     let newOptions;
     if (typeof options === 'string') {
-      newOptions = url.parse(options);
-      newOptions.maxRedirects = exports.maxRedirects;
+      newOptions = Object.assign(
+        {},
+        url.parse(options),
+        { maxRedirects: 21 }
+      );
     } else {
       newOptions = Object.assign({
-        maxRedirects: exports.maxRedirects,
+        maxRedirects: 21,
         protocol,
       }, options);
     }
     assert.equal(newOptions.protocol, protocol, 'protocol mismatch');
-    return new RedirectableRequest(newOptions, callback);
+    return new RedirectableRequest(newOptions, cb);
   };
 
-  wrappedProtocol.get = function l(options: object, callback: object): object {
-    const request = wrappedProtocol.request(options, callback);
+  wrappedProtocol.get = function l(options: Object, cb: () => void): Object {
+    const request = wrappedProtocol.request(options, cb);
     request.end();
     return request;
   };

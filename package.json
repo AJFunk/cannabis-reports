@@ -1,6 +1,6 @@
 {
   "name": "cannabis-reports",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "SDK for Cannabis Reports API",
   "author": "AJ Funk <aj@ajfunk.me>",
   "main": "lib/index.js",
@@ -14,11 +14,12 @@
   },
   "license": "MIT",
   "scripts": {
+    "test": "export TEST_PATH=lib && mocha --timeout 8000 tests/* --compilers js:babel-register --require ./tests/helper.js --recursive",
     "test-source": "export TEST_PATH=src && mocha --timeout 8000 tests/* --compilers js:babel-register --require ./tests/helper.js --recursive",
-    "test-build": "export TEST_PATH=lib && mocha --timeout 8000 tests/* --compilers js:babel-register --require ./tests/helper.js --recursive",
     "start": "babel-node ./src/index.js",
     "lint": "eslint --ext .js ./",
-    "build": "npm run lint && babel src -d lib"
+    "build": "npm run lint && babel src -d lib",
+    "flow": "flow"
   },
   "devDependencies": {
     "app-module-path": "^1.0.6",
@@ -36,6 +37,7 @@
     "eslint-plugin-babel": "^3.2.0",
     "eslint-plugin-flow-vars": "^0.5.0",
     "eslint-plugin-flowtype": "^2.4.0",
+    "flow-bin": "^0.44.0",
     "mocha": "^2.4.5"
   },
   "dependencies": {}

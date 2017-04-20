@@ -1,3 +1,4 @@
+// @flow
 let apiKey = process.env.CANNABIS_REPORTS_API_KEY;
 const setCannabisReportsKey = (key: string): null => {
   apiKey = key;

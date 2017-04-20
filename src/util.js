@@ -1,7 +1,9 @@
+// @flow
+// $FlowFixMe
 import { https } from './redirects';
 import { apiKey } from './config';
 
-const sendRequest = (endpoint: string, options: object = {}, cb: object): undefined => {
+const sendRequest = (endpoint: string, options: Object | null = {}, cb: Function): void => {
   let url = `${endpoint}?`;
   if (options) {
     for (const key in options) {
@@ -24,19 +26,19 @@ const sendRequest = (endpoint: string, options: object = {}, cb: object): undefi
     },
   };
 
-  const req = https.request(params, (res: object): null => {
+  const req = https.request(params, (res: Object): null => {
     if (res.statusCode < 200 || res.statusCode >= 300) {
       return cb(`statusCode=${res.statusCode}`);
     }
     const buf = [];
-    res.on('data', (c: object): object => buf.push(c));
-    res.on('end', (): object => {
-      const d = JSON.parse(Buffer.concat(buf));
+    res.on('data', (c: Object): number => buf.push(c));
+    res.on('end', (): Object => {
+      const d = JSON.parse(Buffer.concat(buf).toString());
       return cb(null, d.data);
     });
     return null;
   });
-  req.on('error', (err: object): object => cb(err));
+  req.on('error', (err: Object): Object => cb(err));
   req.end();
 };
 

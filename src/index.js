@@ -1,22 +1,22 @@
 import { setCannabisReportsKey } from './config';
 
-const Strain = require('./strain')();
-const Flower = require('./flower')();
-const Extract = require('./extract')();
-const Edible = require('./edible')();
-const Product = require('./product')();
-const Producer = require('./producer')();
 const Dispensary = require('./dispensary')();
+const Edible = require('./edible')();
+const Extract = require('./extract')();
+const Flower = require('./flower')();
+const Producer = require('./producer')();
+const Product = require('./product')();
 const SeedCompany = require('./seed-company')();
+const Strain = require('./strain')();
 
 export {
-  Strain,
-  Flower,
-  Extract,
-  Edible,
-  Product,
-  Producer,
-  SeedCompany,
   Dispensary,
+  Edible,
+  Extract,
+  Flower,
+  Producer,
+  Product,
+  SeedCompany,
   setCannabisReportsKey,
+  Strain,
 };

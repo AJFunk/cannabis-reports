@@ -1,9 +1,10 @@
+// @flow
 import {
   sendRequest,
   validateUcpc,
 } from './util';
 
-export default function product(): object {
+export default function product(): Object {
   function validateProductType(productType: string): boolean {
     const validTypes = [
       'bath',
@@ -21,114 +22,131 @@ export default function product(): object {
 
   return {
 
-    all(options: object = {}): undefined {
-      return new Promise((resolve: object, reject: object): undefined => {
-        sendRequest('products', options, (err: string, data: object): undefined => {
-          if (err) return reject(new Error(err));
-          return resolve(data);
-        });
-      });
-    },
-
-    type(productType: string, options: object = {}): undefined {
-      return new Promise((resolve: object, reject: object): undefined => {
-        if (!validateProductType(productType.toLowerCase())) {
-          reject(new Error('Invalid Edible Type.'));
-        }
-        sendRequest(`products/type/${productType}`,
+    all: (options: Object = {}): Promise<any> =>
+      new Promise((resolve: (data: Object) => void, reject: (reason: Error) => void): mixed =>
+        sendRequest(
+          'products',
           options,
-          (err: string, data: object): undefined => {
-            if (err) return reject(new Error(err));
-            return resolve(data);
+          (err: Error | null, data?: Object): mixed => {
+            if (err) return reject(err);
+            return data ? resolve(data) : reject(new Error('No data found'));
           }
-        );
-      });
-    },
+        )
+      ),
 
-    product(ucpc: string): undefined {
-      return new Promise((resolve: object, reject: object): undefined => {
-        if (!validateUcpc(ucpc)) reject(new Error('Invalid UCPC.'));
-        sendRequest(`products/${ucpc}`, null, (err: string, data: object): undefined => {
-          if (err) return reject(new Error(err));
-          return resolve(data);
-        });
-      });
-    },
-
-    user(ucpc: string): undefined {
-      return new Promise((resolve: object, reject: object): undefined => {
-        if (!validateUcpc(ucpc)) reject(new Error('Invalid UCPC.'));
-        sendRequest(`products/${ucpc}/user`, null, (err: string, data: object): undefined => {
-          if (err) return reject(new Error(err));
-          return resolve(data);
-        });
-      });
-    },
-
-    reviews(ucpc: string, options: object = {}): undefined {
-      return new Promise((resolve: object, reject: object): undefined => {
-        if (!validateUcpc(ucpc)) reject(new Error('Invalid UCPC.'));
-        sendRequest(`products/${ucpc}/reviews`, options, (err: string, data: object): undefined => {
-          if (err) return reject(new Error(err));
-          return resolve(data);
-        });
-      });
-    },
-
-    effectsFlavors(ucpc: string): undefined {
-      return new Promise((resolve: object, reject: object): undefined => {
-        if (!validateUcpc(ucpc)) reject(new Error('Invalid UCPC.'));
-        sendRequest(`products/${ucpc}/effectsFlavors`,
-          null,
-          (err: string, data: object): undefined => {
-            if (err) return reject(new Error(err));
-            return resolve(data);
-          }
-        );
-      });
-    },
-
-    producer(ucpc: string): undefined {
-      return new Promise((resolve: object, reject: object): undefined => {
-        if (!validateUcpc(ucpc)) reject(new Error('Invalid UCPC.'));
-        sendRequest(`products/${ucpc}/producer`, null, (err: string, data: object): undefined => {
-          if (err) return reject(new Error(err));
-          return resolve(data);
-        });
-      });
-    },
-
-    strain(ucpc: string): undefined {
-      return new Promise((resolve: object, reject: object): undefined => {
-        if (!validateUcpc(ucpc)) reject(new Error('Invalid UCPC.'));
-        sendRequest(`products/${ucpc}/strain`, null, (err: string, data: object): undefined => {
-          if (err) return reject(new Error(err));
-          return resolve(data);
-        });
-      });
-    },
-
-    availability(ucpc: string, lat: string, lng: string, options: object = {}): undefined {
-      return new Promise((resolve: object, reject: object): undefined => {
-        if (!validateUcpc(ucpc)) reject(new Error('Invalid UCPC.'));
-        if (!lat) reject(new Error('Latitude is required'));
-        if (!(typeof(lat) === 'string' || typeof(lat) === 'number')) {
-          reject(new Error('Latitude must be a string or number.'));
+    type: (productType: string, options: Object = {}): Promise<any> =>
+      new Promise((resolve: (data: Object) => void, reject: (reason: Error) => void): mixed => {
+        if (!validateProductType(productType.toLowerCase())) {
+          return reject(new Error('Invalid Edible Type.'));
         }
-        if (!lng) reject(new Error('Longitude is required'));
+        return sendRequest(`products/type/${productType}`,
+          options,
+          (err: Error | null, data?: Object): mixed => {
+            if (err) return reject(err);
+            return data ? resolve(data) : reject(new Error('No data found'));
+          }
+        );
+      }),
+
+    product: (ucpc: string): Promise<any> =>
+      new Promise((resolve: (data: Object) => void, reject: (reason: Error) => void): mixed => {
+        if (!validateUcpc(ucpc)) return reject(new Error('Invalid UCPC.'));
+        return sendRequest(
+          `products/${ucpc}`,
+          null,
+          (err: Error | null, data?: Object): mixed => {
+            if (err) return reject(err);
+            return data ? resolve(data) : reject(new Error('No data found'));
+          }
+        );
+      }),
+
+    user: (ucpc: string): Promise<any> =>
+      new Promise((resolve: (data: Object) => void, reject: (reason: Error) => void): mixed => {
+        if (!validateUcpc(ucpc)) return reject(new Error('Invalid UCPC.'));
+        return sendRequest(
+          `products/${ucpc}/user`,
+          null,
+          (err: Error | null, data?: Object): mixed => {
+            if (err) return reject(err);
+            return data ? resolve(data) : reject(new Error('No data found'));
+          }
+        );
+      }),
+
+    reviews: (ucpc: string, options: Object = {}): Promise<any> =>
+      new Promise((resolve: (data: Object) => void, reject: (reason: Error) => void): mixed => {
+        if (!validateUcpc(ucpc)) return reject(new Error('Invalid UCPC.'));
+        return sendRequest(
+          `products/${ucpc}/reviews`,
+          options,
+          (err: Error | null, data?: Object): mixed => {
+            if (err) return reject(err);
+            return data ? resolve(data) : reject(new Error('No data found'));
+          }
+        );
+      }),
+
+    effectsFlavors: (ucpc: string): Promise<any> =>
+      new Promise((resolve: (data: Object) => void, reject: (reason: Error) => void): mixed => {
+        if (!validateUcpc(ucpc)) return reject(new Error('Invalid UCPC.'));
+        return sendRequest(
+          `products/${ucpc}/effectsFlavors`,
+          null,
+          (err: Error | null, data?: Object): mixed => {
+            if (err) return reject(err);
+            return data ? resolve(data) : reject(new Error('No data found'));
+          }
+        );
+      }),
+
+    producer: (ucpc: string): Promise<any> =>
+      new Promise((resolve: (data: Object) => void, reject: (reason: Error) => void): mixed => {
+        if (!validateUcpc(ucpc)) return reject(new Error('Invalid UCPC.'));
+        return sendRequest(
+          `products/${ucpc}/producer`,
+          null,
+          (err: Error | null, data?: Object): mixed => {
+            if (err) return reject(err);
+            return data ? resolve(data) : reject(new Error('No data found'));
+          }
+        );
+      }),
+
+    strain: (ucpc: string): Promise<any> =>
+      new Promise((resolve: (data: Object) => void, reject: (reason: Error) => void): mixed => {
+        if (!validateUcpc(ucpc)) return reject(new Error('Invalid UCPC.'));
+        return sendRequest(
+          `products/${ucpc}/strain`,
+          null,
+          (err: Error | null, data?: Object): mixed => {
+            if (err) return reject(err);
+            return data ? resolve(data) : reject(new Error('No data found'));
+          }
+        );
+      }),
+
+    availability: (ucpc: string, lat: string, lng: string, options: Object = {}): Promise<any> =>
+      new Promise((resolve: (data: Object) => void, reject: (reason: Error) => void): mixed => {
+        if (!validateUcpc(ucpc)) return reject(new Error('Invalid UCPC.'));
+        if (!lat) return reject(new Error('Latitude is required'));
+        if (!(typeof(lat) === 'string' || typeof(lat) === 'number')) {
+          return reject(new Error('Latitude must be a string or number.'));
+        }
+        if (!lng) return reject(new Error('Longitude is required'));
         if (!(typeof(lng) === 'string' || typeof(lng) === 'number')) {
-          reject(new Error('Longitude must be a string or number.'));
+          return reject(new Error('Longitude must be a string or number.'));
         }
         const radius = (options && options.radius) ? `/${options.radius}` : '';
-        sendRequest(`products/${ucpc}/availability/geo/${lat}/${lng}${radius}`,
+        return sendRequest(
+          `products/${ucpc}/availability/geo/${lat}/${lng}${radius}`,
           options,
-          (err: string, data: object): undefined => {
-            if (err) return reject(new Error(err));
-            return resolve(data);
+          (err: Error | null, data?: Object): mixed => {
+            if (err) return reject(err);
+            return data ? resolve(data) : reject(new Error('No data found'));
           }
         );
-      });
-    },
+      }),
 
   };
 }
