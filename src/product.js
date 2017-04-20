@@ -5,21 +5,6 @@ import {
 } from './util';
 
 export default function product(): Object {
-  function validateProductType(productType: string): boolean {
-    const validTypes = [
-      'bath',
-      'topical',
-      'skin care',
-      'pre-roll',
-      'lip balm',
-      'massage oil',
-      'personal lubricant',
-    ];
-    if (!productType || typeof(productType) !== 'string') return false;
-    if (validTypes.indexOf(productType) < 0) return false;
-    return true;
-  }
-
   return {
 
     all: (options: Object = {}): Promise<any> =>
@@ -35,18 +20,15 @@ export default function product(): Object {
       ),
 
     type: (productType: string, options: Object = {}): Promise<any> =>
-      new Promise((resolve: (data: Object) => void, reject: (reason: Error) => void): mixed => {
-        if (!validateProductType(productType.toLowerCase())) {
-          return reject(new Error('Invalid Edible Type.'));
-        }
-        return sendRequest(`products/type/${productType}`,
+      new Promise((resolve: (data: Object) => void, reject: (reason: Error) => void): mixed =>
+        sendRequest(`products/type/${productType}`,
           options,
           (err: Error | null, data?: Object): mixed => {
             if (err) return reject(err);
             return data ? resolve(data) : reject(new Error('No data found'));
           }
-        );
-      }),
+        )
+      ),
 
     product: (ucpc: string): Promise<any> =>
       new Promise((resolve: (data: Object) => void, reject: (reason: Error) => void): mixed => {

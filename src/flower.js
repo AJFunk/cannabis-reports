@@ -5,13 +5,6 @@ import {
 } from './util';
 
 export default function flower(): Object {
-  function validateFlowerType(flowerType: string): boolean {
-    const validTypes = ['flowers', 'seeds', 'clones', 'shake'];
-    if (!flowerType || typeof(flowerType) !== 'string') return false;
-    if (validTypes.indexOf(flowerType) < 0) return false;
-    return true;
-  }
-
   return {
 
     all: (options: Object = {}): Promise<any> =>
@@ -27,19 +20,16 @@ export default function flower(): Object {
       ),
 
     type: (flowerType: string, options: Object = {}): Promise<any> =>
-      new Promise((resolve: (data: Object) => void, reject: (reason: Error) => void): mixed => {
-        if (!validateFlowerType(flowerType.toLowerCase())) {
-          return reject(new Error('Invalid Flower Type.'));
-        }
-        return sendRequest(
+      new Promise((resolve: (data: Object) => void, reject: (reason: Error) => void): mixed =>
+        sendRequest(
           `flowers/type/${flowerType}`,
           options,
           (err: Error | null, data?: Object): mixed => {
             if (err) return reject(err);
             return data ? resolve(data) : reject(new Error('No data found'));
           }
-        );
-      }),
+        )
+      ),
 
     flower: (ucpc: string): Promise<any> =>
       new Promise((resolve: (data: Object) => void, reject: (reason: Error) => void): mixed => {

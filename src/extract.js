@@ -5,24 +5,6 @@ import {
 } from './util';
 
 export default function extract(): Object {
-  function validateExtractType(extractType: string): boolean {
-    const validTypes = [
-      'kief',
-      'hash',
-      'water-hash',
-      'oil',
-      'wax',
-      'crumble',
-      'honeycomb',
-      'shatter',
-      'vaporizer-disposable',
-      'vaporizer-cartridge',
-    ];
-    if (!extractType || typeof(extractType) !== 'string') return false;
-    if (validTypes.indexOf(extractType) < 0) return false;
-    return true;
-  }
-
   return {
 
     all: (options: Object = {}): Promise<any> =>
@@ -38,19 +20,16 @@ export default function extract(): Object {
       ),
 
     type: (extractType: string, options: Object = {}): Promise<any> =>
-      new Promise((resolve: (data: Object) => void, reject: (reason: Error) => void): mixed => {
-        if (!validateExtractType(extractType.toLowerCase())) {
-          return reject(new Error('Invalid Extract Type.'));
-        }
-        return sendRequest(
+      new Promise((resolve: (data: Object) => void, reject: (reason: Error) => void): mixed =>
+        sendRequest(
           `extracts/type/${extractType}`,
           options,
           (err: Error | null, data?: Object): mixed => {
             if (err) return reject(err);
             return data ? resolve(data) : reject(new Error('No data found'));
           }
-        );
-      }),
+        )
+      ),
 
     extract: (ucpc: string): Promise<any> =>
       new Promise((resolve: (data: Object) => void, reject: (reason: Error) => void): mixed => {
