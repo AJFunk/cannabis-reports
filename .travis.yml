@@ -3,4 +3,4 @@ node_js:
   - "node"
 script:
   - npm run build
-  - npm run test-build
+  - npm run test
