@@ -105,14 +105,8 @@ export default function flower(): Object {
     availability: (ucpc: string, lat: string, lng: string, options: Object = {}): Promise<any> =>
       new Promise((resolve: (data: Object) => void, reject: (reason: Error) => void): mixed => {
         if (!validateUcpc(ucpc)) return reject(new Error('Invalid UCPC.'));
-        if (!lat) return reject(new Error('Latitude is required'));
-        if (!(typeof(lat) === 'string' || typeof(lat) === 'number')) {
-          return reject(new Error('Latitude must be a string or number.'));
-        }
-        if (!lng) return reject(new Error('Longitude is required'));
-        if (!(typeof(lng) === 'string' || typeof(lng) === 'number')) {
-          return reject(new Error('Longitude must be a string or number.'));
-        }
+        if (typeof lat === 'undefined') return reject(new Error('Latitude is required'));
+        if (typeof lng === 'undefined') return reject(new Error('Longitude is required'));
         const radius = (options && options.radius) ? `/${options.radius}` : '';
         return sendRequest(`flowers/${ucpc}/availability/geo/${lat}/${lng}${radius}`,
           options,
