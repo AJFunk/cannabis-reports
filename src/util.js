@@ -42,10 +42,12 @@ const sendRequest = (endpoint: string,
     if (res.statusCode < 200 || res.statusCode >= 300) {
       return cb(resolve, reject, new Error(`statusCode=${res.statusCode}`));
     }
-    const buf = [];
-    res.on('data', (c: Object): number => buf.push(c));
+    let body = '';
+    res.on('data', (c: Object): void => {
+      body += c.toString();
+    });
     res.on('end', (): Object => {
-      const d = JSON.parse(Buffer.concat(buf).toString());
+      const d = JSON.parse(body);
       return cb(resolve, reject, null, d.data);
     });
     return null;
