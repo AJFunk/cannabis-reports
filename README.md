@@ -3,7 +3,9 @@ A Cannabis Reports API wrapper for Node.js
 
 [![Build Status](https://travis-ci.org/AJFunk/cannabis-reports.svg?branch=master)](https://travis-ci.org/AJFunk/cannabis-reports)
 
-This project has **no dependencies!** and uses modern ES2016+ syntax, which means you can use promises (as shown in the documentation) or async/await.
+This project uses modern ES2016+ syntax, which means you can use promises (as shown in the documentation) or async/await.
+
+The only dependency is `babel-runtime` which is used for browser compatibility.
 
 ### Installation
 
