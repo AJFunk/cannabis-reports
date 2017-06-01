@@ -5,8 +5,6 @@ A Cannabis Reports API wrapper for Node.js
 
 This project uses modern ES2016+ syntax, which means you can use promises (as shown in the documentation) or async/await.
 
-The only dependency is `babel-runtime` which is used for browser compatibility.
-
 ### Installation
 
 ```sh
